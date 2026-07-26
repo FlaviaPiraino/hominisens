@@ -1,0 +1,625 @@
+/* ============================================================
+   HominiSens — Feuille de style V2 (refonte UX / conversion)
+   Toutes les couleurs se règlent ici, dans :root.
+   ============================================================ */
+:root {
+  --fond: #fbf9f6;          /* fond général, blanc chaud */
+  --blanc: #ffffff;
+  --encre: #35302b;         /* texte principal, anthracite chaud */
+  --encre-douce: #7d7264;   /* texte secondaire */
+  --or: #b58a52;            /* accent doré (boutons secondaires, titres) */
+  --or-fonce: #96703d;
+  --sauge: #74846a;         /* accent végétal (boutons primaires) */
+  --sauge-fonce: #57654e;
+  --sauge-pale: #eef0ea;    /* fonds d'encadrés verts */
+  --sable: #f4eee5;         /* fonds d'encadrés dorés */
+  --ombre: 0 8px 28px rgba(60, 48, 35, .10);
+  --rayon: 16px;
+  --police-titres: "Cormorant Garamond", Georgia, serif;
+  --police-texte: "Jost", "Segoe UI", Arial, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--police-texte);
+  color: var(--encre);
+  background: var(--fond);
+  line-height: 1.75;
+  font-size: 1.02rem;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--sauge-fonce); }
+
+/* ---------- Barre de navigation ---------- */
+nav {
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid #eadfce;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+.nav-inner {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .4rem 1.2rem;
+  flex-wrap: wrap;
+}
+.nav-marque {
+  font-family: var(--police-titres);
+  font-size: 1.45rem;
+  letter-spacing: .06em;
+  text-decoration: none;
+  color: var(--encre);
+}
+.nav-marque span { color: var(--or); }
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .1rem;
+}
+nav ul a {
+  display: block;
+  padding: .8rem .8rem;
+  text-decoration: none;
+  color: var(--encre);
+  font-size: .92rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+nav ul a:hover, nav ul a.actif { color: var(--or-fonce); box-shadow: inset 0 -3px 0 var(--or); }
+nav ul a.nav-cta {
+  background: var(--sauge);
+  color: var(--blanc);
+  border-radius: 999px;
+  padding: .55rem 1.3rem;
+  margin-left: .6rem;
+  box-shadow: none;
+}
+nav ul a.nav-cta:hover { background: var(--sauge-fonce); color: var(--blanc); }
+
+/* ---------- Héros ---------- */
+.hero {
+  background: linear-gradient(rgba(46, 38, 28, .55), rgba(46, 38, 28, .55)),
+              url("https://static.wixstatic.com/media/90a441_a668868857354525a19f7ec4dc02905f~mv2.jpg/v1/crop/x_201,y_0,w_980,h_227,q_80/90a441_a668868857354525a19f7ec4dc02905f~mv2.jpg") center/cover;
+  color: var(--blanc);
+  text-align: center;
+  padding: 4.5rem 1.2rem 4rem;
+}
+.hero .surtitre {
+  text-transform: uppercase;
+  letter-spacing: .28em;
+  font-size: .8rem;
+  opacity: .9;
+  margin-bottom: 1rem;
+}
+.hero h1 {
+  font-family: var(--police-titres);
+  font-weight: 500;
+  font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+  line-height: 1.25;
+  max-width: 850px;
+  margin: 0 auto .9rem;
+}
+.hero p.sous-titre {
+  max-width: 640px;
+  margin: 0 auto 1.6rem;
+  font-size: 1.08rem;
+  opacity: .95;
+}
+.hero.compact { padding: 3rem 1.2rem 2.6rem; }
+.hero.compact h1 { font-size: clamp(1.6rem, 3.2vw, 2.4rem); }
+
+/* ---------- Bandeau de réassurance ---------- */
+.reassurance {
+  background: var(--blanc);
+  border-bottom: 1px solid #efe6d8;
+}
+.reassurance ul {
+  list-style: none;
+  max-width: 1150px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .4rem 2.4rem;
+  padding: .8rem 1.2rem;
+  font-size: .92rem;
+  color: var(--encre-douce);
+}
+.reassurance li::before { content: "✦ "; color: var(--or); }
+
+/* ---------- Structure ---------- */
+main { max-width: 1150px; margin: 0 auto; padding: 3rem 1.2rem 4rem; }
+section { margin-bottom: 3.6rem; }
+
+h2 {
+  font-family: var(--police-titres);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+  color: var(--encre);
+  margin-bottom: .9rem;
+  text-align: center;
+  line-height: 1.3;
+}
+h2 + .chapeau { text-align: center; max-width: 720px; margin: -0.2rem auto 1.4rem; color: var(--encre-douce); }
+h3 {
+  font-family: var(--police-titres);
+  font-weight: 600;
+  font-size: 1.35rem;
+  color: var(--or-fonce);
+  margin-bottom: .5rem;
+  line-height: 1.3;
+}
+.centre { text-align: center; }
+.petit { font-size: .85rem; color: var(--encre-douce); }
+
+/* ---------- Boutons ---------- */
+.bouton {
+  display: inline-block;
+  background: var(--sauge);
+  color: var(--blanc);
+  padding: .8rem 1.9rem;
+  border-radius: 999px;
+  text-decoration: none;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-size: .88rem;
+  font-weight: 500;
+  margin: .4rem .25rem;
+  transition: transform .15s, background .2s, box-shadow .2s;
+}
+.bouton:hover { background: var(--sauge-fonce); transform: translateY(-2px); box-shadow: var(--ombre); }
+.bouton.or { background: var(--or); }
+.bouton.or:hover { background: var(--or-fonce); }
+.bouton.contour {
+  background: transparent;
+  color: var(--sauge-fonce);
+  border: 1.5px solid var(--sauge);
+}
+.bouton.contour:hover { background: var(--sauge); color: var(--blanc); }
+.hero .bouton.contour { color: var(--blanc); border-color: var(--blanc); }
+.hero .bouton.contour:hover { background: rgba(255,255,255,.15); }
+
+/* ---------- Cartes ---------- */
+.grille {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  margin-top: 1.6rem;
+}
+.carte {
+  background: var(--blanc);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 1.7rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  transition: transform .18s;
+}
+.carte:hover { transform: translateY(-4px); }
+.carte img { border-radius: calc(var(--rayon) - 4px); margin: 0 auto 1.1rem; }
+.carte ul { list-style: none; margin: .8rem 0; }
+.carte li { padding: .3rem 0; border-bottom: 1px dashed #ece2d4; }
+.carte li:last-child { border-bottom: none; }
+.carte .pousse { margin-top: auto; padding-top: .8rem; }
+.badge {
+  display: inline-block;
+  background: var(--sauge-pale);
+  color: var(--sauge-fonce);
+  font-size: .78rem;
+  letter-spacing: .04em;
+  padding: .15rem .8rem;
+  border-radius: 999px;
+  margin-bottom: .5rem;
+}
+
+/* ---------- Encadrés ---------- */
+.encadre {
+  background: var(--sable);
+  border-radius: var(--rayon);
+  padding: 1.7rem 1.9rem;
+  margin: 1.3rem 0;
+}
+.encadre.vert { background: var(--sauge-pale); }
+.encadre.blanc { background: var(--blanc); box-shadow: var(--ombre); }
+.encadre h3 { margin-top: 0; }
+
+/* ---------- Tarifs ---------- */
+.prix {
+  font-size: 2.4rem;
+  color: var(--or-fonce);
+  font-family: var(--police-titres);
+  font-weight: 600;
+  line-height: 1.1;
+}
+.prix small { font-size: 1rem; color: var(--encre-douce); font-family: var(--police-texte); }
+.carte.vedette { border: 2px solid var(--or); position: relative; }
+.carte.vedette::before {
+  content: "Le plus choisi";
+  position: absolute;
+  top: -0.9rem; left: 50%;
+  transform: translateX(-50%);
+  background: var(--or);
+  color: var(--blanc);
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .2rem .9rem;
+  border-radius: 999px;
+}
+
+/* ---------- Chiffres clés ---------- */
+.chiffres {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  text-align: center;
+  background: var(--blanc);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 1.8rem 1rem;
+}
+.chiffres strong {
+  display: block;
+  font-family: var(--police-titres);
+  font-size: 2.1rem;
+  color: var(--sauge-fonce);
+}
+.chiffres span { font-size: .9rem; color: var(--encre-douce); }
+
+/* ---------- FAQ ---------- */
+.faq details {
+  background: var(--blanc);
+  border-radius: 12px;
+  box-shadow: var(--ombre);
+  margin-bottom: .8rem;
+  padding: .2rem 1.3rem;
+}
+.faq summary {
+  cursor: pointer;
+  font-weight: 500;
+  padding: .9rem 0;
+  list-style: none;
+  position: relative;
+  padding-right: 2rem;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  position: absolute; right: .2rem; top: .7rem;
+  font-size: 1.4rem; color: var(--or);
+}
+.faq details[open] summary::after { content: "–"; }
+.faq details p { padding: 0 0 1rem; color: var(--encre-douce); }
+
+/* ---------- Étapes ---------- */
+.etapes { counter-reset: etape; display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin-top: 1.4rem; }
+.etape {
+  background: var(--blanc);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 1.5rem;
+}
+.etape::before {
+  counter-increment: etape;
+  content: counter(etape);
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  width: 2.2rem; height: 2.2rem;
+  border-radius: 50%;
+  background: var(--sauge-pale);
+  color: var(--sauge-fonce);
+  font-family: var(--police-titres);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: .7rem;
+}
+
+/* ---------- Bande CTA ---------- */
+.bande-cta {
+  background: linear-gradient(120deg, var(--sauge-fonce), var(--sauge));
+  color: var(--blanc);
+  border-radius: var(--rayon);
+  text-align: center;
+  padding: 2.6rem 1.5rem;
+}
+.bande-cta h2 { color: var(--blanc); }
+.bande-cta p { max-width: 620px; margin: 0 auto 1.2rem; opacity: .95; }
+.bande-cta .bouton { background: var(--blanc); color: var(--sauge-fonce); }
+.bande-cta .bouton:hover { background: var(--sable); }
+.bande-cta .tel {
+  display: block;
+  margin-top: .8rem;
+  color: var(--blanc);
+  font-size: 1.15rem;
+  letter-spacing: .04em;
+}
+
+/* ---------- Galerie ---------- */
+.galerie {
+  display: grid;
+  gap: .9rem;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+}
+.galerie img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  transition: transform .25s;
+  cursor: zoom-in;
+}
+.galerie img:hover { transform: scale(1.03); }
+
+/* ---------- Formulaire ---------- */
+.formulaire {
+  max-width: 580px;
+  margin: 1.5rem auto 0;
+  background: var(--blanc);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 2rem;
+  text-align: left;
+}
+.formulaire label {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: .92rem;
+  color: var(--encre-douce);
+}
+.formulaire input, .formulaire textarea, .formulaire select {
+  display: block;
+  width: 100%;
+  margin-top: .3rem;
+  padding: .7rem .9rem;
+  border: 1px solid #ddd3c5;
+  border-radius: 10px;
+  font: inherit;
+  color: var(--encre);
+  background: var(--fond);
+}
+.formulaire input:focus, .formulaire textarea:focus, .formulaire select:focus {
+  outline: 2px solid var(--or);
+  border-color: var(--or);
+}
+.form-ligne { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.formulaire button { border: none; cursor: pointer; font: inherit; display: block; margin: .4rem auto 0; }
+@media (max-width: 520px) { .form-ligne { grid-template-columns: 1fr; } }
+
+/* ---------- Pied de page ---------- */
+footer {
+  background: var(--encre);
+  color: #efe7db;
+  padding: 3rem 1.2rem 5.5rem;
+}
+.footer-grille {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+footer h3 { color: var(--or); font-size: 1.15rem; }
+footer a { color: #efe7db; }
+footer ul { list-style: none; }
+footer li { padding: .2rem 0; }
+.footer-bas {
+  max-width: 1150px;
+  margin: 2rem auto 0;
+  border-top: 1px solid rgba(255,255,255,.15);
+  padding-top: 1.2rem;
+  font-size: .8rem;
+  text-align: center;
+  opacity: .8;
+}
+
+/* ---------- Barre d'action mobile ---------- */
+.barre-mobile {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--blanc);
+  border-top: 1px solid #eadfce;
+  display: flex;
+  z-index: 95;
+  box-shadow: 0 -4px 18px rgba(60,48,35,.12);
+}
+.barre-mobile a {
+  flex: 1;
+  text-align: center;
+  padding: .85rem .4rem;
+  text-decoration: none;
+  font-size: .88rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.barre-mobile a:first-child { background: var(--sauge); color: var(--blanc); }
+.barre-mobile a:last-child { background: var(--or); color: var(--blanc); }
+@media (min-width: 900px) { .barre-mobile { display: none; } footer { padding-bottom: 1.5rem; } }
+
+@media (max-width: 640px) {
+  nav ul a { padding: .6rem .55rem; font-size: .8rem; }
+  .nav-marque { font-size: 1.2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- Accessibilité ---------- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--encre);
+  color: var(--blanc);
+  padding: .7rem 1.2rem;
+  z-index: 200;
+  border-radius: 0 0 10px 0;
+}
+.skip-link:focus { left: 0; }
+a:focus-visible, button:focus-visible, summary:focus-visible,
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--or);
+  outline-offset: 2px;
+}
+
+/* ---------- Icônes SVG ---------- */
+.ico { width: 1.1em; height: 1.1em; vertical-align: -0.18em; display: inline-block; }
+
+/* ---------- Bouton prestige (usage exceptionnel) ---------- */
+.bouton.or { background: var(--or-fonce); }
+
+/* ---------- Menu burger ---------- */
+.nav-actions { display: flex; align-items: center; gap: .4rem; }
+.nav-burger { display: none; background: none; border: 0; cursor: pointer; padding: .7rem .6rem; }
+.nav-burger span {
+  display: block; width: 24px; height: 2px;
+  background: var(--encre); margin: 5px 0;
+  transition: transform .2s, opacity .2s;
+}
+@media (max-width: 900px) {
+  .nav-burger { display: block; }
+  nav ul { display: none; width: 100%; flex-direction: column; padding: .3rem 0 .8rem; }
+  nav.ouvert ul { display: flex; }
+  nav ul a { padding: .85rem 1rem; font-size: 1rem; min-height: 44px; display: flex; align-items: center; }
+  nav.ouvert .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  nav.ouvert .nav-burger span:nth-child(2) { opacity: 0; }
+  nav.ouvert .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+}
+
+/* ---------- Palier tablette ---------- */
+@media (min-width: 700px) and (max-width: 1023px) {
+  .grille { grid-template-columns: repeat(2, 1fr); }
+  .hero { padding: 3.5rem 1.2rem 3rem; }
+}
+
+/* ---------- Confort de lecture & zones tactiles ---------- */
+.encadre p, .encadre li, .faq details p, .etape p, .carte p { max-width: 75ch; }
+.encadre.centre p, .centre .encadre p, .carte p { margin-left: auto; margin-right: auto; }
+footer a { display: inline-block; padding: .3rem 0; }
+.faq summary { min-height: 44px; display: flex; align-items: center; }
+.bouton { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+
+/* ---------- Styleguide ---------- */
+.sg-swatch { height: 72px; border-radius: 10px; margin-bottom: .8rem; }
+
+/* ---------- Entête illustrée (accueil) ---------- */
+.hero.clair {
+  background: #e7e3d9;
+  color: var(--encre);
+  padding: 0;
+}
+.hero.clair .banniere { width: 100%; height: auto; display: block; }
+.hero.clair .hero-texte { padding: 1.6rem 1.2rem 2.8rem; }
+.hero.clair h1 { color: var(--encre); }
+.hero.clair p.sous-titre { color: var(--encre-douce); opacity: 1; }
+.hero.clair .bouton.contour { color: var(--sauge-fonce); border-color: var(--sauge); }
+.hero.clair .bouton.contour:hover { background: var(--sauge); color: var(--blanc); }
+
+/* ---------- Pied de page illustré ---------- */
+footer {
+  background: #efe9dd url("../images/fond-pied-de-page.jpg") center / cover no-repeat;
+  color: var(--encre);
+}
+footer h3 { color: var(--or-fonce); }
+footer a { color: var(--encre); }
+footer .petit { color: var(--encre-douce); }
+.footer-bas {
+  border-top: 1px solid rgba(60, 48, 35, .22);
+  opacity: .85;
+}
+
+/* ---------- H1 invisible à l'écran, présent pour le SEO et les lecteurs d'écran ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.hero.clair .hero-texte { padding: 1.1rem 1.2rem 2.1rem; }
+
+/* ---------- Entêtes des pages intérieures : image claire fournie par Flavia ---------- */
+.hero {
+  background: #f4eeea url("../images/entete-pages.jpg") center / cover no-repeat;
+  color: var(--encre);
+}
+.hero h1 { text-shadow: 0 1px 14px rgba(255, 255, 255, .65); }
+.hero .surtitre { color: var(--or-fonce); opacity: 1; }
+.hero p.sous-titre { color: var(--encre-douce); opacity: 1; }
+.hero .bouton.contour { color: var(--sauge-fonce); border-color: var(--sauge); }
+.hero .bouton.contour:hover { background: var(--sauge); color: var(--blanc); }
+
+/* ---------- Entêtes intérieures sur fond aquarelle clair ---------- */
+.hero {
+  background: #f0ebe0 url("../images/fond-entete.jpg") center / cover no-repeat;
+  color: var(--encre);
+}
+.hero h1 { color: var(--encre); }
+.hero .surtitre { color: var(--or-fonce); opacity: 1; }
+.hero p.sous-titre { color: var(--encre-douce); opacity: 1; }
+.hero .bouton.contour { color: var(--sauge-fonce); border-color: var(--sauge); }
+.hero .bouton.contour:hover { background: var(--sauge); color: var(--blanc); }
+.hero.clair .hero-texte { padding: 1.2rem 1.2rem 2rem; }
+
+/* ---------- Texte accessible aux lecteurs d'écran uniquement ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Boutons superposés sur la bannière d'accueil ---------- */
+.hero.clair { position: relative; }
+.hero.clair .hero-texte {
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0;
+  white-space: nowrap;
+}
+@media (max-width: 719px) {
+  /* Sur petit écran la bannière devient trop basse pour accueillir les boutons :
+     ils repassent sous l'image pour rester utilisables */
+  .hero.clair .hero-texte {
+    position: static;
+    transform: none;
+    white-space: normal;
+    padding: .9rem 1rem 1.5rem;
+  }
+}
+
+/* ---------- Boutons intégrés à la bannière d'accueil ---------- */
+.banniere-bloc { position: relative; }
+.banniere-boutons {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 5.5%;
+  text-align: center;
+}
+.banniere-boutons .bouton { box-shadow: 0 4px 14px rgba(60, 48, 35, .18); }
+.banniere-boutons .bouton.contour { background: rgba(251, 249, 246, .75); }
+@media (max-width: 720px) {
+  /* Sur petit écran, la bannière devient trop basse : les boutons passent juste dessous */
+  .banniere-boutons { position: static; padding: .9rem 1rem 1.4rem; }
+  .banniere-boutons .bouton.contour { background: transparent; }
+}

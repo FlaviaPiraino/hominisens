@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Styleguide interne | HominiSens</title>
+  <meta name="description" content="Référence interne du design system HominiSens : couleurs, typographies, composants et états.">
+  <link rel="canonical" href="https://www.hominisens.com/styleguide.html">
+  <meta name="robots" content="noindex">
+  <meta property="og:title" content="Styleguide interne | HominiSens">
+  <meta property="og:description" content="Référence interne du design system HominiSens : couleurs, typographies, composants et états.">
+  <meta property="og:image" content="https://www.hominisens.com/images/entete-accueil.jpg">
+  <meta property="og:image:alt" content="Massage bien-être HominiSens à Mouvaux, près de Lille">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<nav aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a class="nav-marque" href="index.html">Homini<span>Sens</span></a>
+    <ul id="menu-principal">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="soins.html">Soins</a></li>
+      <li><a href="tarifs.html">Tarifs</a></li>
+      <li><a href="formations.html">Formations</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="qui-suis-je.html">Qui suis-je ?</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="nav-cta" href="contact.html">Réserver</a>
+      <button class="nav-burger" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<header class="hero compact">
+  <p class="surtitre">Document interne</p>
+  <h1>Design system HominiSens</h1>
+  <p class="sous-titre">Page interne de référence — non indexée, absente du sitemap. À consulter avant toute évolution du site.</p>
+  
+</header>
+
+<main id="contenu">
+
+  <section>
+    <h2>1. Couleurs</h2>
+    <div class="grille sg-pal">
+      <div class="carte"><div class="sg-swatch" style="background:var(--sauge)"></div><h3>--sauge</h3><p class="petit">Action : boutons primaires, liens de réservation.</p></div>
+      <div class="carte"><div class="sg-swatch" style="background:var(--or)"></div><h3>--or</h3><p class="petit">Prestige : titres H3, prix, badges, certification. Jamais en bouton d'action.</p></div>
+      <div class="carte"><div class="sg-swatch" style="background:var(--encre)"></div><h3>--encre</h3><p class="petit">Texte principal, pied de page.</p></div>
+      <div class="carte"><div class="sg-swatch" style="background:var(--sauge-pale)"></div><h3>--sauge-pale</h3><p class="petit">Fonds d'encadrés « confiance / financement ».</p></div>
+      <div class="carte"><div class="sg-swatch" style="background:var(--sable)"></div><h3>--sable</h3><p class="petit">Fonds d'encadrés « information / offre ».</p></div>
+      <div class="carte"><div class="sg-swatch" style="background:var(--fond); border:1px solid #eee"></div><h3>--fond</h3><p class="petit">Fond général du site.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Typographies</h2>
+    <div class="encadre blanc">
+      <p style="font-family:var(--police-titres);font-weight:500;font-size:clamp(1.9rem,4.2vw,3.1rem);line-height:1.25;">H1 — Cormorant Garamond 500</p>
+      <h2 style="text-align:left;">H2 — Cormorant Garamond 500</h2>
+      <h3>H3 — Cormorant Garamond 600, couleur or foncé</h3>
+      <p>Paragraphe — Jost 400, interlignage 1,75, largeur max 75 caractères pour le confort de lecture.</p>
+      <p class="petit">Texte secondaire — .petit, encre douce.</p>
+      <span class="badge">Badge — Jost, sauge pâle</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Boutons &amp; états</h2>
+    <div class="encadre blanc centre">
+      <a class="bouton" href="#">Primaire (action)</a>
+      <a class="bouton contour" href="#">Secondaire (contour)</a>
+      <a class="bouton or" href="#">Prestige (usage exceptionnel)</a>
+      <p class="petit" style="margin-top:.8rem;">Règle : une seule action primaire par zone. Survol = élévation légère. Focus clavier = liseré or 3&nbsp;px.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>4. Composants</h2>
+    <div class="grille">
+      <div class="carte"><span class="badge">Badge</span><h3>Carte</h3><p>Contenu de démonstration avec bouton poussé en bas.</p><div class="pousse"><a class="bouton contour" href="#">Action</a></div></div>
+      <div class="encadre" style="margin:0;"><h3>Encadré sable</h3><p>Information, offre du moment.</p></div>
+      <div class="encadre vert" style="margin:0;"><h3>Encadré sauge</h3><p>Confiance, financement, Qualiopi.</p></div>
+    </div>
+    <div class="etapes" style="margin-top:1.4rem;">
+      <div class="etape"><h3>Étape</h3><p>Numérotation automatique par compteur CSS.</p></div>
+      <div class="etape"><h3>Étape</h3><p>Toujours par série de 3.</p></div>
+      <div class="etape"><h3>Étape</h3><p>Verbe d'action en titre.</p></div>
+    </div>
+    <div class="faq" style="margin-top:1.4rem;">
+      <details><summary>FAQ — question repliée (composant natif, accessible clavier)</summary><p>Réponse en encre douce, largeur limitée.</p></details>
+    </div>
+  </section>
+
+  <section>
+    <h2>5. Règles d'usage</h2>
+    <div class="encadre">
+      <p>Photographie : lumière chaude naturelle, matières (lin, bois, pierre, huile), ratio 4:3 pour les cartes de soins, carré pour la galerie, portrait 3:4 pour Flavia. Icônes : SVG trait 1,8&nbsp;px, currentColor, jamais d'emoji. Une bande CTA en fin de chaque page. Vouvoiement chaleureux, bénéfice avant caractéristique.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-grille">
+    <div>
+      <h3>HominiSens</h3>
+      <p>Massages bien-être sur-mesure &amp; formations professionnelles — organisme certifié Qualiopi.<br>
+      Mouvaux (59) — soins en cabinet, et à domicile sur demande (20&nbsp;km).</p>
+      <p class="petit" style="margin-top:.6rem;">Massages bien-être non thérapeutiques et non sexuels.</p>
+    </div>
+    <div>
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="soins.html">La carte des soins</a></li>
+        <li><a href="tarifs.html">Tarifs &amp; offres</a></li>
+        <li><a href="formations.html">Les formations Qualiopi</a></li>
+        <li><a href="techniques-tarifs.html">Catalogue des formations</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="qui-suis-je.html">Qui suis-je ?</a></li>
+        <li><a href="contact.html">Réserver / Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <ul>
+        <li>Flavia Piraino</li>
+        <li><a href="tel:0674252554">06 74 25 25 54</a></li>
+        <li><a href="mailto:flaviapiraino@gmail.com">flaviapiraino@gmail.com</a></li>
+        <li><a href="https://facebook.com/HominiSens">Facebook</a></li>
+        <li><a href="https://instagram.com/hominisens">Instagram</a></li>
+        <li><a href="https://www.instagram.com/hominisens_formations/">Instagram Formations</a></li>
+        <li><a href="https://g.page/r/Ceg3Nqg4VS6DEAE/review">Avis Google</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Documents</h3>
+      <ul>
+        <li><a href="documents/cgv-prestations.pdf">CGV prestations de services</a></li>
+        <li><a href="documents/cgv-formations.pdf">CGV HominiSens Formations</a></li>
+        <li><a href="documents/certificat-qualiopi.pdf">Certificat Qualiopi</a></li>
+        <li><a href="documents/accessibilite-handicap.pdf">Accessibilité Handicap</a></li>
+        <li><a href="documents/mentions-legales.pdf">Mentions légales</a></li>
+        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bas">
+    Tous droits réservés HominiSens — PIRAINO Flavia | Mise à jour du site 07/2026.
+  </div>
+</footer>
+
+<div class="barre-mobile">
+  <a href="tel:0674252554">Appeler</a>
+  <a href="contact.html">Réserver</a>
+</div>
+
+<script>
+(function () {
+  var b = document.querySelector(".nav-burger");
+  var n = document.querySelector("nav");
+  if (b) b.addEventListener("click", function () {
+    var o = n.classList.toggle("ouvert");
+    b.setAttribute("aria-expanded", o ? "true" : "false");
+    b.setAttribute("aria-label", o ? "Fermer le menu" : "Ouvrir le menu");
+  });
+})();
+</script>
+</body>
+</html>
