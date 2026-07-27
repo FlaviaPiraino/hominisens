@@ -619,9 +619,17 @@ footer .petit { color: var(--encre-douce); }
 .banniere-boutons .bouton { box-shadow: 0 4px 14px rgba(60, 48, 35, .18); }
 .banniere-boutons .bouton.contour { background: rgba(251, 249, 246, .75); }
 @media (max-width: 720px) {
-  /* Sur petit écran, la bannière devient trop basse : les boutons passent juste dessous */
-  .banniere-boutons { position: static; padding: .9rem 1rem 1.4rem; }
-  .banniere-boutons .bouton.contour { background: transparent; }
+  /* Sur petit écran, les boutons restent accrochés à la bannière : compacts et
+     à cheval sur son bord bas — la bande inférieure de l'image est vide, le
+     logo et la devise (35–75 % de la hauteur) restent entièrement visibles */
+  .banniere-boutons { position: absolute; left: 0; right: 0; bottom: -21px; padding: 0; }
+  .banniere-boutons .bouton { min-height: 42px; padding: .45rem .7rem; font-size: .84rem; }
+  .banniere-boutons .bouton.contour { background: rgba(251, 249, 246, .94); }
+  .banniere-bloc { margin-bottom: 32px; }
+}
+@media (max-width: 345px) {
+  /* Très petits écrans : les 2 boutons passent sur 2 lignes, on réserve la place */
+  .banniere-bloc { margin-bottom: 84px; }
 }
 
 /* ---------- Affinages mobile (07/2026) ---------- */
