@@ -623,3 +623,18 @@ footer .petit { color: var(--encre-douce); }
   .banniere-boutons { position: static; padding: .9rem 1rem 1.4rem; }
   .banniere-boutons .bouton.contour { background: transparent; }
 }
+
+/* ---------- Affinages mobile (07/2026) ---------- */
+@media (max-width: 640px) {
+  /* Bandeau de réassurance : un argument par ligne, bien centré */
+  .reassurance ul { flex-direction: column; gap: .35rem; text-align: center; }
+  .reassurance li { width: 100%; }
+  /* Galerie : 2 colonnes sur téléphone plutôt qu'une longue colonne */
+  .galerie { grid-template-columns: repeat(2, 1fr); gap: .6rem; }
+  /* Bloc chiffres : 2 colonnes */
+  .chiffres { grid-template-columns: repeat(2, 1fr); }
+  /* Respiration verticale quand les boutons passent à la ligne */
+  .hero .bouton, main .bouton { margin: .28rem .25rem; }
+  /* …sauf le bouton d'envoi du formulaire, qui reste centré */
+  .formulaire .bouton, .formulaire button { margin: .6rem auto 0; }
+}
