@@ -1,5 +1,5 @@
 /* ============================================================
-   HominiSens — Feuille de style V2 (refonte UX / conversion)
+   HominiSens - Feuille de style V2 (refonte UX / conversion)
    Toutes les couleurs se règlent ici, dans :root.
    ============================================================ */
 :root {
@@ -587,6 +587,39 @@ footer .petit { color: var(--encre-douce); }
   border: 0;
 }
 
+/* ---------- Univers du massage bien-être (articles) ---------- */
+.carte-article { text-align: left; }
+.carte-article h3 { margin-top: .3rem; }
+.carte-article p { max-width: none; }
+.carte-article .badge { align-self: flex-start; }
+.contenu-article { text-align: left; }
+.contenu-article h2, .contenu-article h3, .contenu-article h4 { text-align: left; margin-top: 1.8rem; }
+.contenu-article p { margin-bottom: 1.1rem; max-width: none; }
+.contenu-article ul, .contenu-article ol { margin: 0 0 1.1rem 1.4rem; color: var(--encre); }
+.contenu-article li { padding: .2rem 0; }
+.contenu-article a { text-decoration: underline; text-underline-offset: 2px; }
+.contenu-article blockquote {
+  border-left: 3px solid var(--or);
+  margin: 1.4rem 0;
+  padding: .3rem 0 .3rem 1.2rem;
+  color: var(--encre-douce);
+  font-style: italic;
+}
+.contenu-article img {
+  border-radius: var(--rayon);
+  margin: 1.2rem 0;
+  box-shadow: var(--ombre);
+}
+.etat-vide-articles {
+  text-align: center;
+  color: var(--encre-douce);
+  background: var(--blanc);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 2.4rem 1.5rem;
+  grid-column: 1 / -1;
+}
+
 /* ---------- Boutons superposés sur la bannière d'accueil ---------- */
 .hero.clair { position: relative; }
 .hero.clair .hero-texte {
@@ -619,32 +652,7 @@ footer .petit { color: var(--encre-douce); }
 .banniere-boutons .bouton { box-shadow: 0 4px 14px rgba(60, 48, 35, .18); }
 .banniere-boutons .bouton.contour { background: rgba(251, 249, 246, .75); }
 @media (max-width: 720px) {
-  /* Sur petit écran : les 2 boutons côte à côte sur une même ligne,
-     juste sous la bannière, sur le même fond pour rester visuellement liés */
-  .banniere-boutons {
-    position: static;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: .5rem;
-    padding: .75rem .5rem .95rem;
-  }
-  .banniere-boutons a.bouton { min-height: 42px; padding: .45rem .7rem; font-size: .84rem; margin: 0; }
+  /* Sur petit écran, la bannière devient trop basse : les boutons passent juste dessous */
+  .banniere-boutons { position: static; padding: .9rem 1rem 1.4rem; }
   .banniere-boutons .bouton.contour { background: transparent; }
-}
-
-/* ---------- Affinages mobile (07/2026) ---------- */
-@media (max-width: 640px) {
-  /* Bandeau de réassurance : un argument par ligne, bien centré */
-  .reassurance ul { flex-direction: column; gap: .35rem; text-align: center; }
-  .reassurance li { width: 100%; }
-  /* Galerie : 2 colonnes sur téléphone plutôt qu'une longue colonne */
-  .galerie { grid-template-columns: repeat(2, 1fr); gap: .6rem; }
-  /* Bloc chiffres : 2 colonnes */
-  .chiffres { grid-template-columns: repeat(2, 1fr); }
-  /* Respiration verticale quand les boutons passent à la ligne */
-  .hero .bouton, main .bouton { margin: .28rem .25rem; }
-  /* …sauf le bouton d'envoi du formulaire, qui reste centré */
-  .formulaire .bouton, .formulaire button { margin: .6rem auto 0; }
 }
