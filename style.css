@@ -623,3 +623,73 @@ footer .petit { color: var(--encre-douce); }
   .banniere-boutons { position: static; padding: .9rem 1rem 1.4rem; }
   .banniere-boutons .bouton.contour { background: transparent; }
 }
+
+/* ---------- Articles (blog) : photo intégrée au texte ---------- */
+.article-corps { display: flow-root; }
+.photo-article {
+  float: left;
+  width: 300px;
+  max-width: 45%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin: .3rem 1.8rem 1.2rem 0;
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+}
+@media (max-width: 640px) {
+  .photo-article {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 1.3rem;
+  }
+}
+
+/* ---------- Articles (blog) : liste en bannières ---------- */
+.liste-bannieres {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 880px;
+  margin: 1.6rem auto 0;
+}
+.carte.carte-article {
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: left;
+  padding: 1.3rem;
+  gap: 1.6rem;
+}
+.carte.carte-article img {
+  width: 280px;
+  flex: 0 0 280px;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  align-self: center;
+  object-fit: cover;
+  border-radius: calc(var(--rayon) - 4px);
+  margin: 0;
+}
+.carte-article-texte {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0%;
+  min-width: 0;
+}
+.carte-article-texte .badge { align-self: flex-start; }
+.carte.carte-article p { margin-left: 0; margin-right: 0; max-width: none; }
+@media (max-width: 640px) {
+  .carte.carte-article { flex-direction: column; align-items: stretch; }
+  .carte.carte-article img { width: 100%; flex: none; }
+}
+
+/* ---------- Articles (blog) : état vide de la liste ---------- */
+.etat-vide-articles {
+  background: var(--blanc);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 2.4rem 1.8rem;
+  text-align: center;
+  color: var(--encre-douce);
+}
+.etat-vide-articles h3 { color: var(--or-fonce); margin-bottom: .6rem; }

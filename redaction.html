@@ -256,7 +256,7 @@
    ================================================================== */
 const REPO_OWNER   = "FlaviaPiraino"; // votre nom d'utilisateur GitHub
 const REPO_NAME    = "hominisens";    // le dépôt GitHub du site hominisens.com
-const MOT_DE_PASSE = "LicataBlog2204"; // mot de passe par défaut — changez-le quand vous voulez, juste ici
+const MOT_DE_PASSE = "HominiSens2026"; // mot de passe par défaut — changez-le quand vous voulez, juste ici
 /* Ce mot de passe est une porte d'entrée simple, pas une vraie protection technique
    (le code qui le vérifie est visible dans le navigateur, comme toute page web).
    La vraie sécurité vient du jeton GitHub, qui lui n'est jamais stocké dans le site. */
@@ -619,8 +619,8 @@ function genererHTMLArticle(a) {
 </header>
 
 <main id="contenu">
-  <article class="encadre blanc" style="max-width:760px;margin:2rem auto;text-align:left;">
-    <img src="../images/articles/${a.slug}.jpg" alt="${echapperAttribut(a.altPhoto)}" style="width:100%;border-radius:var(--rayon);margin-bottom:1.5rem;" loading="lazy">
+  <article class="encadre blanc article-corps" style="max-width:760px;margin:2rem auto;text-align:left;">
+    <img src="../images/articles/${a.slug}.jpg" alt="${echapperAttribut(a.altPhoto)}" class="photo-article" width="800" height="600" loading="lazy">
     <div class="contenu-article">
       ${a.contenuHTML}
       ${etiquettes}
@@ -700,15 +700,57 @@ async function ajouterALaListe(a) {
   carte.className = "carte carte-article";
   carte.innerHTML = [
     '<img src="images/articles/' + a.slug + '.jpg" width="800" height="600" alt="' + echapperAttribut(a.altPhoto) + '" loading="lazy">',
+    '<div class="carte-article-texte">',
     '<span class="badge">' + echapperHTML(a.dateAffichee) + "</span>",
     "<h3>" + echapperHTML(a.titre) + "</h3>",
     "<p>" + echapperHTML(a.resume) + "</p>",
-    '<div class="pousse"><a class="bouton contour" href="articles/' + a.slug + '.html">Lire l\u2019article</a></div>'
+    '<div class="pousse"><a class="bouton contour" href="articles/' + a.slug + '.html">Lire l\u2019article</a></div>',
+    "</div>"
   ].join("");
   conteneur.insertBefore(carte, conteneur.firstChild);
 
   const htmlFinal = "<!DOCTYPE html>\n" + doc.documentElement.outerHTML;
   await ecrireFichier(chemin, toBase64Texte(htmlFinal), 'Ajout de l\u2019article "' + a.titre + '" à la liste', fichier.sha);
+}
+
+/* ---------- Mise à jour du sitemap.xml ---------- */
+async function ajouterAuSitemap(a) {
+  const chemin = "sitemap.xml";
+  const fichier = await lireFichier(chemin);
+  if (!fichier) throw new Error("sitemap.xml introuvable à la racine du dépôt.");
+
+  const doc = new DOMParser().parseFromString(fichier.contenu, "application/xml");
+  if (doc.getElementsByTagName("parsererror").length) throw new Error("sitemap.xml n'a pas pu être analysé (XML invalide).");
+
+  const urlset = doc.documentElement;
+  const ns = urlset.namespaceURI || "http://www.sitemaps.org/schemas/sitemap/0.9";
+  const urlArticle = "https://www.hominisens.com/articles/" + a.slug + ".html";
+
+  // Évite un doublon si l'article est republié après un premier essai
+  const dejaPresent = Array.from(urlset.getElementsByTagNameNS(ns, "loc"))
+    .some((l) => l.textContent.trim() === urlArticle);
+  if (dejaPresent) return;
+
+  const url = doc.createElementNS(ns, "url");
+  const loc = doc.createElementNS(ns, "loc");
+  loc.textContent = urlArticle;
+  const lastmod = doc.createElementNS(ns, "lastmod");
+  lastmod.textContent = a.dateISO;
+  url.appendChild(loc);
+  url.appendChild(lastmod);
+
+  // Retire le texte blanc final (juste avant </urlset>) pour ne pas laisser de ligne vide
+  const dernierNoeud = urlset.lastChild;
+  if (dernierNoeud && dernierNoeud.nodeType === Node.TEXT_NODE && !dernierNoeud.textContent.trim()) {
+    urlset.removeChild(dernierNoeud);
+  }
+  urlset.appendChild(doc.createTextNode("\n  "));
+  urlset.appendChild(url);
+  urlset.appendChild(doc.createTextNode("\n"));
+
+  const serialise = new XMLSerializer().serializeToString(doc);
+  const xmlFinal = serialise.indexOf("<?xml") === 0 ? serialise : '<?xml version="1.0" encoding="UTF-8"?>\n' + serialise;
+  await ecrireFichier(chemin, toBase64Texte(xmlFinal), 'Ajout de l\u2019article "' + a.titre + '" au sitemap', fichier.sha);
 }
 
 /* ---------- Publication ---------- */
@@ -772,8 +814,17 @@ $("#btn-publier").addEventListener("click", async () => {
     afficherStatut("Mise à jour de la page « L'univers du massage bien-être »...", "info");
     await ajouterALaListe(article);
 
+    afficherStatut("Mise à jour du plan du site (sitemap.xml)...", "info");
+    let sitemapMisAJour = true;
+    try {
+      await ajouterAuSitemap(article);
+    } catch (e) {
+      sitemapMisAJour = false;
+    }
+
     afficherStatut(
-      'Publié ! L\u2019article sera visible dans une à deux minutes sur <a href="https://www.hominisens.com/articles/' + slug + '.html" target="_blank" rel="noopener">hominisens.com/articles/' + slug + ".html</a>",
+      'Publié ! L\u2019article sera visible dans une à deux minutes sur <a href="https://www.hominisens.com/articles/' + slug + '.html" target="_blank" rel="noopener">hominisens.com/articles/' + slug + ".html</a>" +
+      (sitemapMisAJour ? "" : "<br><br>⚠️ Le sitemap n\u2019a pas pu être mis à jour automatiquement pour cet article (fichier introuvable ou illisible) — pensez à l\u2019ajouter vous-même dans sitemap.xml, ou signalez-le pour que ce soit corrigé."),
       "succes"
     );
   } catch (e) {
