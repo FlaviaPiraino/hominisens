@@ -30,7 +30,7 @@
     text-decoration: none;
   }
   .barre-redaction .marque span { color: var(--or); }
-  .barre-redaction .liens-droite { display: flex; gap: 1.2rem; align-items: center; font-size: .88rem; }
+  .barre-redaction .liens-droite { display: flex; gap: 1.2rem; align-items: center; font-size: .88rem; flex-wrap: wrap; }
   .barre-redaction .liens-droite a, .barre-redaction .liens-droite button {
     color: var(--encre-douce);
     background: none;
@@ -147,6 +147,7 @@
   <a class="marque" href="index.html">Homini<span>Sens</span> · Rédaction</a>
   <div class="liens-droite">
     <a href="univers-massage-bien-etre.html">Voir la page</a>
+    <a href="offre-du-mois.html">Offre du mois</a>
     <button type="button" id="btn-oublier-jeton">Oublier le jeton</button>
   </div>
 </div>
@@ -256,7 +257,7 @@
    ================================================================== */
 const REPO_OWNER   = "FlaviaPiraino"; // votre nom d'utilisateur GitHub
 const REPO_NAME    = "hominisens";    // le dépôt GitHub du site hominisens.com
-const MOT_DE_PASSE = "LicataRedaction2204"; // mot de passe par défaut — changez-le quand vous voulez, juste ici
+const MOT_DE_PASSE = "HominiSens2026"; // mot de passe par défaut — changez-le quand vous voulez, juste ici
 /* Ce mot de passe est une porte d'entrée simple, pas une vraie protection technique
    (le code qui le vérifie est visible dans le navigateur, comme toute page web).
    La vraie sécurité vient du jeton GitHub, qui lui n'est jamais stocké dans le site. */
@@ -333,7 +334,7 @@ $("#btn-valider-jeton").addEventListener("click", async () => {
   const token = $("#jeton").value.trim();
   const btn = $("#btn-valider-jeton");
   $("#erreur-jeton").innerHTML = "";
-  if (!token) { $("#erreur-jeton").innerHTML = '<div class="message-erreur">Collez votre jeton d\u2019accès.</div>'; return; }
+  if (!token) { $("#erreur-jeton").innerHTML = '<div class="message-erreur">Collez votre jeton d’accès.</div>'; return; }
   btn.disabled = true; btn.textContent = "Vérification...";
   try {
     const ok = await verifierAcces(token);
@@ -704,13 +705,13 @@ async function ajouterALaListe(a) {
     '<span class="badge">' + echapperHTML(a.dateAffichee) + "</span>",
     "<h3>" + echapperHTML(a.titre) + "</h3>",
     "<p>" + echapperHTML(a.resume) + "</p>",
-    '<div class="pousse"><a class="bouton contour" href="articles/' + a.slug + '.html">Lire l\u2019article</a></div>',
+    '<div class="pousse"><a class="bouton contour" href="articles/' + a.slug + '.html">Lire l’article</a></div>',
     "</div>"
   ].join("");
   conteneur.insertBefore(carte, conteneur.firstChild);
 
   const htmlFinal = "<!DOCTYPE html>\n" + doc.documentElement.outerHTML;
-  await ecrireFichier(chemin, toBase64Texte(htmlFinal), 'Ajout de l\u2019article "' + a.titre + '" à la liste', fichier.sha);
+  await ecrireFichier(chemin, toBase64Texte(htmlFinal), 'Ajout de l’article "' + a.titre + '" à la liste', fichier.sha);
 }
 
 /* ---------- Mise à jour du sitemap.xml ---------- */
@@ -750,7 +751,7 @@ async function ajouterAuSitemap(a) {
 
   const serialise = new XMLSerializer().serializeToString(doc);
   const xmlFinal = serialise.indexOf("<?xml") === 0 ? serialise : '<?xml version="1.0" encoding="UTF-8"?>\n' + serialise;
-  await ecrireFichier(chemin, toBase64Texte(xmlFinal), 'Ajout de l\u2019article "' + a.titre + '" au sitemap', fichier.sha);
+  await ecrireFichier(chemin, toBase64Texte(xmlFinal), 'Ajout de l’article "' + a.titre + '" au sitemap', fichier.sha);
 }
 
 /* ---------- Publication ---------- */
@@ -823,8 +824,8 @@ $("#btn-publier").addEventListener("click", async () => {
     }
 
     afficherStatut(
-      'Publié ! L\u2019article sera visible dans une à deux minutes sur <a href="https://www.hominisens.com/articles/' + slug + '.html" target="_blank" rel="noopener">hominisens.com/articles/' + slug + ".html</a>" +
-      (sitemapMisAJour ? "" : "<br><br>⚠️ Le sitemap n\u2019a pas pu être mis à jour automatiquement pour cet article (fichier introuvable ou illisible) — pensez à l\u2019ajouter vous-même dans sitemap.xml, ou signalez-le pour que ce soit corrigé."),
+      'Publié ! L’article sera visible dans une à deux minutes sur <a href="https://www.hominisens.com/articles/' + slug + '.html" target="_blank" rel="noopener">hominisens.com/articles/' + slug + ".html</a>" +
+      (sitemapMisAJour ? "" : "<br><br>⚠️ Le sitemap n’a pas pu être mis à jour automatiquement pour cet article (fichier introuvable ou illisible) — pensez à l’ajouter vous-même dans sitemap.xml, ou signalez-le pour que ce soit corrigé."),
       "succes"
     );
   } catch (e) {

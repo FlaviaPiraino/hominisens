@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Offre du mois — HominiSens</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* Habillage propre à cette page d'admin : ne touche pas à style.css */
+  body { padding-bottom: 3rem; }
+  .barre-redaction {
+    background: var(--blanc);
+    border-bottom: 1px solid #eadfce;
+    padding: .9rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .barre-redaction .marque {
+    font-family: var(--police-titres);
+    font-size: 1.25rem;
+    color: var(--encre);
+    text-decoration: none;
+  }
+  .barre-redaction .marque span { color: var(--or); }
+  .barre-redaction .liens-droite { display: flex; gap: 1.2rem; align-items: center; font-size: .88rem; flex-wrap: wrap; }
+  .barre-redaction .liens-droite a, .barre-redaction .liens-droite button {
+    color: var(--encre-douce);
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+  }
+  .conteneur-ecran { max-width: 620px; margin: 3rem auto; padding: 0 1.2rem; }
+  .panneau {
+    background: var(--blanc);
+    border-radius: var(--rayon);
+    box-shadow: var(--ombre);
+    padding: 2.2rem 2rem;
+  }
+  .panneau h1 { font-family: var(--police-titres); font-size: 1.7rem; color: var(--encre); margin-bottom: .4rem; text-align: left; }
+  .panneau > p.aide { color: var(--encre-douce); font-size: .92rem; margin-bottom: 1.4rem; line-height: 1.6; }
+  .champ { margin-bottom: 1.2rem; text-align: left; }
+  .champ label { display: block; font-size: .9rem; color: var(--encre-douce); margin-bottom: .35rem; }
+  .champ input[type="text"], .champ input[type="password"], .champ textarea {
+    width: 100%;
+    padding: .7rem .9rem;
+    border: 1px solid #ddd3c5;
+    border-radius: 10px;
+    font: inherit;
+    color: var(--encre);
+    background: var(--fond);
+  }
+  .champ textarea { resize: vertical; }
+  .champ input:focus, .champ textarea:focus { outline: 2px solid var(--or); border-color: var(--or); }
+  .champ .aide-champ { font-size: .8rem; color: var(--encre-douce); margin-top: .35rem; line-height: 1.5; }
+  .bouton-pleine-largeur { width: 100%; text-align: center; margin: .6rem 0 0; }
+  .lien-creation-jeton { display: block; margin-top: .4rem; font-size: .88rem; }
+  .message-erreur {
+    background: #fbeceb;
+    border-left: 3px solid #b5514a;
+    color: #8a3d33;
+    padding: .8rem 1rem;
+    border-radius: 8px;
+    font-size: .9rem;
+    margin-bottom: 1.2rem;
+  }
+  .zone-statut {
+    margin-top: 1.4rem;
+    padding: 1rem 1.2rem;
+    border-radius: 10px;
+    font-size: .92rem;
+    display: none;
+  }
+  .zone-statut.info { display: block; background: var(--sable); color: var(--encre); }
+  .zone-statut.succes { display: block; background: var(--sauge-pale); color: var(--sauge-fonce); }
+  .zone-statut.erreur { display: block; background: #fbeceb; color: #8a3d33; }
+  .zone-statut a { color: inherit; font-weight: 600; }
+  .apercu-label { font-size: .8rem; color: var(--encre-douce); margin-bottom: .5rem; text-transform: uppercase; letter-spacing: .06em; }
+  .apercu-encart { margin-bottom: 1.6rem; }
+  .apercu-encart .encadre.vert.centre { margin: 0; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="barre-redaction">
+  <a class="marque" href="index.html">Homini<span>Sens</span> · Offre du mois</a>
+  <div class="liens-droite">
+    <a href="tarifs.html">Voir la page Tarifs</a>
+    <a href="redaction.html">Rédaction des articles</a>
+    <button type="button" id="btn-oublier-jeton">Oublier le jeton</button>
+  </div>
+</div>
+
+<!-- ÉCRAN 1 : mot de passe -->
+<div class="conteneur-ecran" id="ecran-mdp">
+  <div class="panneau">
+    <h1>Espace admin</h1>
+    <p class="aide">Entrez le mot de passe pour accéder à la modification de l'offre du mois.</p>
+    <div id="erreur-mdp"></div>
+    <div class="champ">
+      <label for="mdp">Mot de passe</label>
+      <input type="password" id="mdp" autocomplete="off">
+    </div>
+    <button type="button" class="bouton bouton-pleine-largeur" id="btn-valider-mdp">Entrer</button>
+  </div>
+</div>
+
+<!-- ÉCRAN 2 : jeton GitHub -->
+<div class="conteneur-ecran" id="ecran-jeton" hidden>
+  <div class="panneau">
+    <h1>Se connecter</h1>
+    <p class="aide">Cette page publie directement dans votre dépôt GitHub. Elle a besoin d'un <strong>jeton d'accès personnel</strong> (fine-grained) limité à ce seul dépôt, avec la permission « Contents&nbsp;: Read and write ».<br><br>Le jeton reste uniquement dans ce navigateur — il n'est jamais écrit dans le site. Si vous vous êtes déjà connectée depuis la page Rédaction, c'est le même jeton : vous n'avez rien à refaire.</p>
+    <div id="erreur-jeton"></div>
+    <div class="champ">
+      <label for="jeton">Jeton d'accès GitHub</label>
+      <input type="password" id="jeton" autocomplete="off" placeholder="github_pat_...">
+      <a class="lien-creation-jeton" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Pas encore de jeton ? Créer un jeton sur GitHub →</a>
+    </div>
+    <button type="button" class="bouton bouton-pleine-largeur" id="btn-valider-jeton">Se connecter</button>
+  </div>
+</div>
+
+<!-- ÉCRAN 3 : formulaire offre du mois -->
+<div class="conteneur-ecran" id="ecran-formulaire" hidden>
+  <div class="panneau">
+    <h1>L'offre du mois</h1>
+    <p class="aide">Modifie l'encart affiché en haut de la page Tarifs. Publié directement sur le site, en une à deux minutes.</p>
+
+    <div id="erreur-formulaire"></div>
+
+    <div class="champ">
+      <label for="mois">Mois affiché</label>
+      <input type="text" id="mois" placeholder="Ex. : Septembre 2026">
+    </div>
+
+    <div class="champ">
+      <label for="texte">Texte de l'offre (affiché en gras)</label>
+      <textarea id="texte" rows="3" placeholder="Ex. : En septembre : le Massage Sportif, 60 min à 65 € au lieu de 80 €."></textarea>
+      <p class="aide-champ">Reprenez si possible le même style que les mois précédents : « En [mois] : le [soin], [durée] à [prix promo] € au lieu de [prix normal] €. »</p>
+    </div>
+
+    <p class="apercu-label">Aperçu</p>
+    <div class="apercu-encart">
+      <section class="encadre vert centre">
+        <h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.1 8.3 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 8.9 8.3"/></svg> L'offre du mois - <span id="apercu-mois">—</span></h3>
+        <p>Chaque mois, un soin de la carte est mis à l'honneur à tarif préférentiel.<br>
+        <strong id="apercu-texte">—</strong></p>
+        <a class="bouton" href="#" onclick="return false;">J'en profite</a>
+      </section>
+    </div>
+
+    <button type="button" class="bouton bouton-pleine-largeur" id="btn-publier">Publier sur le site</button>
+    <div class="zone-statut" id="zone-statut"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+"use strict";
+
+/* ==================================================================
+   Mêmes réglages que la page Rédaction (redaction.html) — un seul
+   compte / un seul jeton pour les deux outils d'admin du site.
+   ================================================================== */
+const REPO_OWNER   = "FlaviaPiraino"; // votre nom d'utilisateur GitHub
+const REPO_NAME    = "hominisens";    // le dépôt GitHub du site hominisens.com
+const MOT_DE_PASSE = "HominiSens2026"; // même mot de passe que la page Rédaction — changez-le ici ET là-bas si vous le changez
+/* ================================================================== */
+
+const CLE_TOKEN = "hominisens_gh_token";
+const CLE_MDP_SESSION = "hominisens_mdp_ok";
+
+const $ = (s, p) => (p || document).querySelector(s);
+
+function echapperHTML(s) {
+  const d = document.createElement("div");
+  d.textContent = String(s == null ? "" : s);
+  return d.innerHTML;
+}
+function toBase64Texte(str) { return btoa(unescape(encodeURIComponent(str))); }
+function deBase64Texte(b64) { return decodeURIComponent(escape(atob(b64))); }
+
+/* ---------- Écrans ---------- */
+const ecranMdp = $("#ecran-mdp");
+const ecranJeton = $("#ecran-jeton");
+const ecranFormulaire = $("#ecran-formulaire");
+
+function afficherEcran(nom) {
+  ecranMdp.hidden = nom !== "mdp";
+  ecranJeton.hidden = nom !== "jeton";
+  ecranFormulaire.hidden = nom !== "formulaire";
+}
+
+$("#btn-valider-mdp").addEventListener("click", () => {
+  const val = $("#mdp").value;
+  if (val === MOT_DE_PASSE) {
+    sessionStorage.setItem(CLE_MDP_SESSION, "1");
+    $("#erreur-mdp").innerHTML = "";
+    passerAJeton();
+  } else {
+    $("#erreur-mdp").innerHTML = '<div class="message-erreur">Mot de passe incorrect.</div>';
+  }
+});
+$("#mdp").addEventListener("keydown", (e) => { if (e.key === "Enter") $("#btn-valider-mdp").click(); });
+
+function passerAJeton() {
+  if (localStorage.getItem(CLE_TOKEN)) {
+    afficherEcran("formulaire");
+    chargerOffreActuelle();
+  } else {
+    afficherEcran("jeton");
+  }
+}
+
+async function verifierAcces(token) {
+  const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`, {
+    headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" }
+  });
+  return res.ok;
+}
+
+$("#btn-valider-jeton").addEventListener("click", async () => {
+  const token = $("#jeton").value.trim();
+  const btn = $("#btn-valider-jeton");
+  $("#erreur-jeton").innerHTML = "";
+  if (!token) { $("#erreur-jeton").innerHTML = '<div class="message-erreur">Collez votre jeton d’accès.</div>'; return; }
+  btn.disabled = true; btn.textContent = "Vérification...";
+  try {
+    const ok = await verifierAcces(token);
+    if (!ok) throw new Error("Jeton invalide, ou accès refusé au dépôt " + REPO_OWNER + "/" + REPO_NAME + ".");
+    localStorage.setItem(CLE_TOKEN, token);
+    afficherEcran("formulaire");
+    chargerOffreActuelle();
+  } catch (e) {
+    $("#erreur-jeton").innerHTML = '<div class="message-erreur">' + echapperHTML(e.message) + '</div>';
+  } finally {
+    btn.disabled = false; btn.textContent = "Se connecter";
+  }
+});
+
+$("#btn-oublier-jeton").addEventListener("click", () => {
+  localStorage.removeItem(CLE_TOKEN);
+  $("#jeton").value = "";
+  afficherEcran("jeton");
+});
+
+if (sessionStorage.getItem(CLE_MDP_SESSION) === "1") {
+  passerAJeton();
+} else {
+  afficherEcran("mdp");
+}
+
+/* ---------- Appels à l'API GitHub ---------- */
+function enteteAuth() {
+  return {
+    "Authorization": "Bearer " + localStorage.getItem(CLE_TOKEN),
+    "Accept": "application/vnd.github+json"
+  };
+}
+
+async function lireFichier(chemin) {
+  const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${chemin}`, { headers: enteteAuth() });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error("Erreur GitHub (" + res.status + ") en lisant " + chemin);
+  const data = await res.json();
+  return { sha: data.sha, contenu: deBase64Texte(data.content.replace(/\n/g, "")) };
+}
+
+async function ecrireFichier(chemin, contenuBase64, message, sha) {
+  const corps = { message: message, content: contenuBase64, sha: sha };
+  const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${chemin}`, {
+    method: "PUT",
+    headers: Object.assign({ "Content-Type": "application/json" }, enteteAuth()),
+    body: JSON.stringify(corps)
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || ("Erreur GitHub (" + res.status + ") en écrivant " + chemin));
+  }
+  return res.json();
+}
+
+/* ---------- Champs & aperçu ---------- */
+const champMois = $("#mois");
+const champTexte = $("#texte");
+const apercuMois = $("#apercu-mois");
+const apercuTexte = $("#apercu-texte");
+
+function metAJourApercu() {
+  apercuMois.textContent = champMois.value.trim() || "—";
+  apercuTexte.textContent = champTexte.value.trim() || "—";
+}
+champMois.addEventListener("input", metAJourApercu);
+champTexte.addEventListener("input", metAJourApercu);
+
+/* ---------- Charger l'offre actuellement publiée ---------- */
+async function chargerOffreActuelle() {
+  $("#erreur-formulaire").innerHTML = "";
+  try {
+    const fichier = await lireFichier("tarifs.html");
+    if (!fichier) throw new Error("tarifs.html introuvable dans le dépôt.");
+    const doc = new DOMParser().parseFromString(fichier.contenu, "text/html");
+    const elMois = doc.getElementById("offre-mois");
+    const elTexte = doc.getElementById("offre-texte");
+    if (elMois) champMois.value = elMois.textContent.trim();
+    if (elTexte) champTexte.value = elTexte.textContent.trim();
+    if (!elMois || !elTexte) {
+      $("#erreur-formulaire").innerHTML = '<div class="message-erreur">La page tarifs.html en ligne ne contient pas encore les repères nécessaires (#offre-mois / #offre-texte). Publiez d’abord la nouvelle version de tarifs.html sur GitHub, puis revenez ici.</div>';
+    }
+    metAJourApercu();
+  } catch (e) {
+    $("#erreur-formulaire").innerHTML = '<div class="message-erreur">Impossible de charger l’offre actuelle : ' + echapperHTML(e.message) + '</div>';
+  }
+}
+
+/* ---------- Publication ---------- */
+const zoneStatut = $("#zone-statut");
+function afficherStatut(texte, type) {
+  zoneStatut.className = "zone-statut " + type;
+  zoneStatut.innerHTML = texte;
+}
+
+$("#btn-publier").addEventListener("click", async () => {
+  const btn = $("#btn-publier");
+  try {
+    const mois = champMois.value.trim();
+    const texte = champTexte.value.trim();
+    if (!mois) throw new Error("Le mois affiché est obligatoire.");
+    if (!texte) throw new Error("Le texte de l'offre est obligatoire.");
+
+    btn.disabled = true;
+    afficherStatut("Lecture de la page Tarifs...", "info");
+
+    const fichier = await lireFichier("tarifs.html");
+    if (!fichier) throw new Error("tarifs.html introuvable dans le dépôt.");
+
+    const doc = new DOMParser().parseFromString(fichier.contenu, "text/html");
+    const elMois = doc.getElementById("offre-mois");
+    const elTexte = doc.getElementById("offre-texte");
+    if (!elMois || !elTexte) throw new Error("La page tarifs.html en ligne ne contient pas les repères nécessaires (#offre-mois / #offre-texte). Publiez d’abord la nouvelle version de tarifs.html.");
+
+    elMois.textContent = mois;
+    elTexte.textContent = texte;
+
+    const htmlFinal = "<!DOCTYPE html>\n" + doc.documentElement.outerHTML;
+
+    afficherStatut("Publication en cours...", "info");
+    await ecrireFichier("tarifs.html", toBase64Texte(htmlFinal), "Mise à jour de l’offre du mois : " + mois, fichier.sha);
+
+    afficherStatut('Publié ! La nouvelle offre sera visible dans une à deux minutes sur <a href="https://www.hominisens.com/tarifs.html" target="_blank" rel="noopener">hominisens.com/tarifs.html</a>', "succes");
+  } catch (e) {
+    afficherStatut("Erreur : " + echapperHTML(e.message), "erreur");
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+})();
+</script>
+</body>
+</html>
