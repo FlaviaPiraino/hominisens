@@ -47,7 +47,7 @@
     .dossier .engagement { display: grid; grid-template-columns: 1.3rem 1fr; gap: .6rem; align-items: start; font-size: .9rem; margin: .4rem 0 1rem; cursor: pointer; }
     .dossier .engagement input { width: 1.15rem; height: 1.15rem; margin: .15rem 0 0; accent-color: var(--sauge); }
     .dossier .rgpd { background: var(--sauge-pale); border-left: 3px solid var(--sauge); border-radius: 10px; padding: .9rem 1.1rem; font-size: .84rem; color: var(--encre); margin: 0 0 1.3rem; }
-    .dossier .cache { display: none; }
+    .dossier .cache, .dossier .piege { display: none; }
     .dossier button[disabled] { opacity: .6; cursor: wait; }
     .dossier-merci { max-width: 640px; margin: 1.5rem auto 0; background: var(--blanc); border-radius: var(--rayon); box-shadow: var(--ombre); padding: 2.2rem; text-align: center; }
     .dossier-merci h3 { font-size: 1.7rem; margin-bottom: .6rem; }
@@ -133,7 +133,7 @@
 
       <fieldset>
         <legend><span>2</span>Vous</legend>
-        <div class="groupe">Civilité <span class="req">*</span>
+        <div class="groupe" role="radiogroup" aria-labelledby="rg1"><span id="rg1">Civilité <span class="req">*</span></span>
           <div class="choix">
             <label><input type="radio" name="Civilité" value="Mme" required><span>Mme</span></label>
             <label><input type="radio" name="Civilité" value="M."><span>M.</span></label>
@@ -177,7 +177,7 @@
         <label>Dans quel but souhaitez-vous suivre cette formation ? <span class="req">*</span>
           <textarea name="Dans quel but souhaitez-vous suivre cette formation ?" rows="3" required></textarea>
         </label>
-        <div class="groupe">Avez-vous déjà suivi une formation en massage ?
+        <div class="groupe" role="radiogroup" aria-labelledby="rg2"><span id="rg2">Avez-vous déjà suivi une formation en massage ?</span>
           <div class="choix">
             <label><input type="radio" name="Avez-vous déjà suivi une formation en massage ?" value="Oui"><span>Oui</span></label>
             <label><input type="radio" name="Avez-vous déjà suivi une formation en massage ?" value="Non"><span>Non</span></label>
@@ -186,7 +186,7 @@
         <label class="cache" id="bloc-lesquelles">Si oui, lesquelles ?
           <textarea name="Si oui, lesquelles ?" rows="2"></textarea>
         </label>
-        <div class="groupe">Votre connaissance de l'anatomie
+        <div class="groupe" role="radiogroup" aria-labelledby="rg3"><span id="rg3">Votre connaissance de l'anatomie</span>
           <div class="choix">
             <label><input type="radio" name="Votre connaissance de l'anatomie" value="Nulle à faible"><span>Nulle à faible</span></label>
             <label><input type="radio" name="Votre connaissance de l'anatomie" value="Faible à moyenne"><span>Faible à moyenne</span></label>
@@ -197,13 +197,15 @@
           <textarea name="Selon votre propre expérience ou connaissance, citez 3 bienfaits du massage bien-être :" rows="3" required></textarea>
         </label>
         <label>Besoin particulier ou situation de handicap nécessitant un aménagement ?
-          <span class="aide">Facultatif. Ces informations restent confidentielles et servent uniquement à adapter la formation.</span>
+          <span class="aide">Facultatif. En renseignant ce champ, vous acceptez que ces informations, strictement confidentielles, servent uniquement à adapter votre accueil et la formation.</span>
           <textarea name="Besoin particulier ou situation de handicap nécessitant un aménagement ?" rows="2"></textarea>
         </label>
         <label>Contraintes (disponibilités, déplacements, organisation)
           <textarea name="Contraintes (disponibilités, déplacements, organisation)" rows="2"></textarea>
         </label>
       </fieldset>
+
+      <label class="piege" aria-hidden="true">Ne pas remplir<input type="text" name="site_web" tabindex="-1" autocomplete="off"></label>
 
       <label class="engagement"><input type="checkbox" name="Engagement" value="Je certifie l'exactitude des informations et j'ai pris connaissance des prérequis de la formation." required>
         <span>Je certifie l'exactitude des informations et j'ai pris connaissance des prérequis de la formation. <span class="req">*</span></span></label>
@@ -335,7 +337,7 @@
   var form = document.getElementById("form-dossier");
   if (!form) return;
   var merci = document.getElementById("dossier-merci"), err = document.getElementById("dossier-erreur");
-  var bloc = document.getElementById("bloc-lesquelles");
+  var bloc = document.getElementById("bloc-lesquelles"), debut = Date.now();
   form.addEventListener("change", function (e) {
     if (e.target.name === "Avez-vous déjà suivi une formation en massage ?") bloc.classList.toggle("cache", e.target.value !== "Oui");
   });
@@ -348,7 +350,10 @@
       if (champ) { champ.focus(); champ.scrollIntoView({ block: "center", behavior: "smooth" }); }
       return;
     }
-    var data = new URLSearchParams(), fd = new FormData(form);
+    var fd = new FormData(form);
+    // Anti-robots : champ piège rempli ou envoi en moins de 4 secondes = on ignore silencieusement.
+    if (fd.get("site_web") || Date.now() - debut < 4000) { form.hidden = true; merci.hidden = false; return; }
+    var data = new URLSearchParams();
     fd.forEach(function (valeur, nom) {
       var id = CHAMPS[nom];
       if (!id || valeur === "") return;
