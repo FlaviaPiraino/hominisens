@@ -28,9 +28,30 @@
     .etapes.cinq .etape h3 { margin: .15rem 0 .25rem; font-size: 1.25rem; }
     .etapes.cinq .etape p { margin: 0; }
     @media (max-width: 640px) { .etapes.cinq .etape { padding: 1rem 1.1rem; column-gap: .9rem; } .etapes.cinq::before { left: calc(1.1rem + 1.1rem - 1px); } }
-    .cadre-formulaire { max-width: 780px; margin: 1.5rem auto 0; background: var(--blanc); border-radius: var(--rayon); box-shadow: var(--ombre); padding: .6rem; overflow: hidden; }
-    .cadre-formulaire iframe { display: block; width: 100%; height: 2350px; border: 0; }
-    @media (max-width: 640px) { .cadre-formulaire { padding: 0; } .cadre-formulaire iframe { height: 2750px; } }
+    /* Dossier de candidature (formulaire natif, envoyé au formulaire Google de Vigie) */
+    .formulaire.dossier { max-width: 760px; text-align: left; padding: 2.2rem 2.4rem; }
+    .dossier .form-ligne { gap: 0 1rem; }
+    .dossier fieldset { border: 0; margin: 0 0 1.6rem; padding: 0; }
+    .dossier legend { font-family: var(--police-titres); font-size: 1.45rem; font-weight: 600; color: var(--or-fonce); margin-bottom: .9rem; display: flex; align-items: center; gap: .6rem; }
+    .dossier legend span { display: inline-flex; width: 2rem; height: 2rem; border-radius: 50%; background: var(--sauge-pale); color: var(--sauge-fonce); align-items: center; justify-content: center; font-size: 1.05rem; }
+    .dossier .req { color: var(--or-fonce); }
+    .dossier .aide { display: block; font-size: .82rem; color: var(--encre-douce); margin-top: .2rem; }
+    .dossier .groupe { margin-bottom: 1rem; font-size: .92rem; }
+    .dossier .choix { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .45rem; }
+    .dossier .choix label { margin: 0; }
+    .dossier .choix input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .dossier .choix label span { display: inline-block; padding: .5rem 1.1rem; border: 1px solid #ddd3c5; border-radius: 999px; background: var(--fond); cursor: pointer; transition: all .15s; }
+    .dossier .choix input:checked + span { background: var(--sauge); border-color: var(--sauge); color: #fff; }
+    .dossier .choix input:focus-visible + span { outline: 2px solid var(--or); outline-offset: 2px; }
+    .dossier select { appearance: none; -webkit-appearance: none; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2396703d' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") no-repeat right .9rem center; padding-right: 2.4rem; }
+    .dossier .engagement { display: grid; grid-template-columns: 1.3rem 1fr; gap: .6rem; align-items: start; font-size: .9rem; margin: .4rem 0 1rem; cursor: pointer; }
+    .dossier .engagement input { width: 1.15rem; height: 1.15rem; margin: .15rem 0 0; accent-color: var(--sauge); }
+    .dossier .rgpd { background: var(--sauge-pale); border-left: 3px solid var(--sauge); border-radius: 10px; padding: .9rem 1.1rem; font-size: .84rem; color: var(--encre); margin: 0 0 1.3rem; }
+    .dossier .cache { display: none; }
+    .dossier button[disabled] { opacity: .6; cursor: wait; }
+    .dossier-merci { max-width: 640px; margin: 1.5rem auto 0; background: var(--blanc); border-radius: var(--rayon); box-shadow: var(--ombre); padding: 2.2rem; text-align: center; }
+    .dossier-merci h3 { font-size: 1.7rem; margin-bottom: .6rem; }
+    @media (max-width: 640px) { .formulaire.dossier { padding: 1.5rem 1.2rem; } .dossier legend { font-size: 1.25rem; } }
   </style>
 </head>
 <body>
@@ -85,11 +106,120 @@
 
   <section class="centre" id="dossier">
     <h2>Votre dossier de candidature</h2>
-    <p class="chapeau">Les champs marqués d'un astérisque sont obligatoires. Vos réponses servent uniquement à préparer votre formation.</p>
-    <div class="cadre-formulaire">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc6i5L-KVLpG7O_klaJT3ZuY61joZreoQqL5lbqrtHaR_44MA/viewform?embedded=true" title="Dossier de candidature HominiSens Formations" loading="lazy">Chargement du formulaire…</iframe>
+    <p class="chapeau">Les champs marqués d'un astérisque <span class="req">*</span> sont obligatoires. Comptez 5 minutes.</p>
+
+    <form class="formulaire dossier" id="form-dossier" novalidate>
+      <fieldset>
+        <legend><span>1</span>Votre formation</legend>
+        <label>Formation souhaitée <span class="req">*</span>
+          <select name="Formation souhaitée" required>
+            <option value="">Choisissez une formation…</option>
+            <option>Massage bien-être Detox [DETOX]</option>
+            <option>Massage bien-être Hawaïen [HAWAIEN]</option>
+            <option>Massage bien-être Sportif [SPORTIF]</option>
+            <option>Massage bien-être Thaï Stretch [THAI]</option>
+            <option>Massage bien-être Visage anti-âge [VISAGE]</option>
+            <option>Massage bien-être Prénatal [PRENATAL]</option>
+            <option>Massage bien-être Ventre holistique [VENTRE]</option>
+            <option>Massage bien-être Étoile [ETOILE]</option>
+            <option>Massage bien-être Relaxant corps [RELAX_CORPS]</option>
+            <option>Massage bien-être Relaxant buste [RELAX_BUSTE]</option>
+          </select>
+        </label>
+        <label>Session souhaitée <span class="aide">Dates, si vous les connaissez (voir le <a href="documents/calendrier-2026-formations.pdf" target="_blank">calendrier 2026</a>).</span>
+          <input type="text" name="Session souhaitée (dates, si connues)">
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>2</span>Vous</legend>
+        <div class="groupe">Civilité <span class="req">*</span>
+          <div class="choix">
+            <label><input type="radio" name="Civilité" value="Mme" required><span>Mme</span></label>
+            <label><input type="radio" name="Civilité" value="M."><span>M.</span></label>
+            <label><input type="radio" name="Civilité" value="Autre"><span>Autre</span></label>
+          </div>
+        </div>
+        <div class="form-ligne">
+          <label>Prénom <span class="req">*</span><input type="text" name="Prénom" autocomplete="given-name" required></label>
+          <label>Nom <span class="req">*</span><input type="text" name="Nom" autocomplete="family-name" required></label>
+        </div>
+        <div class="form-ligne">
+          <label>E-mail <span class="req">*</span><input type="email" name="E-mail" autocomplete="email" required></label>
+          <label>Téléphone<input type="tel" name="Téléphone" autocomplete="tel"></label>
+        </div>
+        <div class="form-ligne">
+          <label>Date de naissance<input type="date" name="Date de naissance" autocomplete="bday"></label>
+          <label>Lieu de naissance<input type="text" name="Lieu de naissance"></label>
+        </div>
+        <div class="form-ligne">
+          <label>Nationalité<input type="text" name="Nationalité"></label>
+          <label>Profession actuelle<input type="text" name="Profession actuelle" autocomplete="organization-title"></label>
+        </div>
+        <label>Adresse postale complète<textarea name="Adresse postale complète" rows="2" autocomplete="street-address"></textarea></label>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>3</span>Votre projet et votre positionnement</legend>
+        <label>Financement envisagé
+          <select name="Financement envisagé">
+            <option value="">Je ne sais pas encore</option>
+            <option>Autofinancement</option>
+            <option>Entreprise (fonds propres)</option>
+            <option>OPCO</option>
+            <option>FIFPL</option>
+            <option>FAF</option>
+            <option>France Travail</option>
+            <option>Région</option>
+            <option>Autre</option>
+          </select>
+        </label>
+        <label>Dans quel but souhaitez-vous suivre cette formation ? <span class="req">*</span>
+          <textarea name="Dans quel but souhaitez-vous suivre cette formation ?" rows="3" required></textarea>
+        </label>
+        <div class="groupe">Avez-vous déjà suivi une formation en massage ?
+          <div class="choix">
+            <label><input type="radio" name="Avez-vous déjà suivi une formation en massage ?" value="Oui"><span>Oui</span></label>
+            <label><input type="radio" name="Avez-vous déjà suivi une formation en massage ?" value="Non"><span>Non</span></label>
+          </div>
+        </div>
+        <label class="cache" id="bloc-lesquelles">Si oui, lesquelles ?
+          <textarea name="Si oui, lesquelles ?" rows="2"></textarea>
+        </label>
+        <div class="groupe">Votre connaissance de l'anatomie
+          <div class="choix">
+            <label><input type="radio" name="Votre connaissance de l'anatomie" value="Nulle à faible"><span>Nulle à faible</span></label>
+            <label><input type="radio" name="Votre connaissance de l'anatomie" value="Faible à moyenne"><span>Faible à moyenne</span></label>
+            <label><input type="radio" name="Votre connaissance de l'anatomie" value="Moyenne à élevée"><span>Moyenne à élevée</span></label>
+          </div>
+        </div>
+        <label>Selon votre propre expérience ou connaissance, citez 3 bienfaits du massage bien-être : <span class="req">*</span>
+          <textarea name="Selon votre propre expérience ou connaissance, citez 3 bienfaits du massage bien-être :" rows="3" required></textarea>
+        </label>
+        <label>Besoin particulier ou situation de handicap nécessitant un aménagement ?
+          <span class="aide">Facultatif. Ces informations restent confidentielles et servent uniquement à adapter la formation.</span>
+          <textarea name="Besoin particulier ou situation de handicap nécessitant un aménagement ?" rows="2"></textarea>
+        </label>
+        <label>Contraintes (disponibilités, déplacements, organisation)
+          <textarea name="Contraintes (disponibilités, déplacements, organisation)" rows="2"></textarea>
+        </label>
+      </fieldset>
+
+      <label class="engagement"><input type="checkbox" name="Engagement" value="Je certifie l'exactitude des informations et j'ai pris connaissance des prérequis de la formation." required>
+        <span>Je certifie l'exactitude des informations et j'ai pris connaissance des prérequis de la formation. <span class="req">*</span></span></label>
+
+      <p class="rgpd">(Ces informations restent confidentielles et sont entièrement dédiées à l'élaboration de votre dossier client et des documents légaux à établir en cas de validation d'inscription). Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression en contactant l'organisme (<a href="confidentialite.html">politique de confidentialité</a>).</p>
+
+      <p class="petit centre" id="dossier-erreur" role="alert" style="color:#9a4f3f;margin-bottom:.8rem;"></p>
+      <button type="submit" class="bouton">Envoyer mon dossier</button>
+    </form>
+
+    <div class="dossier-merci" id="dossier-merci" hidden>
+      <h3>Merci, votre dossier est bien arrivé ♡</h3>
+      <p>Je le lis avec attention et je vous recontacte personnellement sous 48 h ouvrées pour échanger sur votre projet. Un e-mail de confirmation vous sera envoyé.</p>
+      <p class="petit" style="margin-top:1rem;">Pas de nouvelles ? Vérifiez vos indésirables ou appelez-moi au <a href="tel:0674252554">06 74 25 25 54</a>.</p>
     </div>
-    <p class="petit" style="margin-top:.9rem;">Le formulaire ne s'affiche pas ? <a href="https://docs.google.com/forms/d/e/1FAIpQLSc6i5L-KVLpG7O_klaJT3ZuY61joZreoQqL5lbqrtHaR_44MA/viewform" target="_blank" rel="noopener">Ouvrez-le dans un nouvel onglet</a>.</p>
+    <p class="petit" style="margin-top:.9rem;">Un souci avec le formulaire ? <a href="https://docs.google.com/forms/d/e/1FAIpQLSc6i5L-KVLpG7O_klaJT3ZuY61joZreoQqL5lbqrtHaR_44MA/viewform" target="_blank" rel="noopener">Remplissez-le ici</a>.</p>
   </section>
 
   <section class="encadre vert">
@@ -194,6 +324,46 @@
     var o = n.classList.toggle("ouvert");
     b.setAttribute("aria-expanded", o ? "true" : "false");
     b.setAttribute("aria-label", o ? "Fermer le menu" : "Ouvrir le menu");
+  });
+})();
+</script>
+<script>
+/* Dossier de candidature : envoi vers le formulaire Google relié à Vigie (mêmes questions). */
+(function () {
+  var ENVOI = "https://docs.google.com/forms/d/e/1FAIpQLSc6i5L-KVLpG7O_klaJT3ZuY61joZreoQqL5lbqrtHaR_44MA/formResponse";
+  var CHAMPS = { "Formation souhaitée": "entry.1111274670", "Session souhaitée (dates, si connues)": "entry.93644892", "Civilité": "entry.1550594107", "Nom": "entry.1831878344", "Prénom": "entry.330461718", "E-mail": "entry.1446722919", "Téléphone": "entry.850684420", "Date de naissance": "entry.2040028960", "Lieu de naissance": "entry.370326032", "Nationalité": "entry.7583888", "Adresse postale complète": "entry.51271566", "Financement envisagé": "entry.1091860564", "Profession actuelle": "entry.278149263", "Dans quel but souhaitez-vous suivre cette formation ?": "entry.1044312964", "Avez-vous déjà suivi une formation en massage ?": "entry.372443679", "Si oui, lesquelles ?": "entry.2128436092", "Votre connaissance de l'anatomie": "entry.1210536151", "Selon votre propre expérience ou connaissance, citez 3 bienfaits du massage bien-être :": "entry.1981398196", "Besoin particulier ou situation de handicap nécessitant un aménagement ?": "entry.1727974840", "Contraintes (disponibilités, déplacements, organisation)": "entry.190300303", "Engagement": "entry.277102553" }; // intitulé de la question -> identifiant « entry.xxx » du formulaire Google
+  var form = document.getElementById("form-dossier");
+  if (!form) return;
+  var merci = document.getElementById("dossier-merci"), err = document.getElementById("dossier-erreur");
+  var bloc = document.getElementById("bloc-lesquelles");
+  form.addEventListener("change", function (e) {
+    if (e.target.name === "Avez-vous déjà suivi une formation en massage ?") bloc.classList.toggle("cache", e.target.value !== "Oui");
+  });
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    err.textContent = "";
+    if (!form.checkValidity()) {
+      var champ = form.querySelector(":invalid");
+      err.textContent = "Merci de compléter les champs obligatoires (*).";
+      if (champ) { champ.focus(); champ.scrollIntoView({ block: "center", behavior: "smooth" }); }
+      return;
+    }
+    var data = new URLSearchParams(), fd = new FormData(form);
+    fd.forEach(function (valeur, nom) {
+      var id = CHAMPS[nom];
+      if (!id || valeur === "") return;
+      if (nom === "Date de naissance") {
+        var d = valeur.split("-");
+        data.append(id + "_year", d[0]); data.append(id + "_month", String(+d[1])); data.append(id + "_day", String(+d[2]));
+      } else data.append(id, valeur);
+    });
+    var bouton = form.querySelector("button"); bouton.disabled = true; bouton.textContent = "Envoi en cours…";
+    fetch(ENVOI, { method: "POST", mode: "no-cors", body: data })
+      .then(function () { form.hidden = true; merci.hidden = false; merci.scrollIntoView({ block: "center", behavior: "smooth" }); })
+      .catch(function () {
+        bouton.disabled = false; bouton.textContent = "Envoyer mon dossier";
+        err.textContent = "L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez, ou utilisez le lien ci-dessous.";
+      });
   });
 })();
 </script>
