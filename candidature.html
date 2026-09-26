@@ -338,6 +338,12 @@
   if (!form) return;
   var merci = document.getElementById("dossier-merci"), err = document.getElementById("dossier-erreur");
   var bloc = document.getElementById("bloc-lesquelles"), debut = Date.now();
+  // Formation pré-sélectionnée depuis le catalogue : candidature.html?formation=CODE
+  var code = (new URLSearchParams(location.search).get("formation") || "").toUpperCase();
+  if (code) {
+    var sel = form.querySelector('select[name="Formation souhaitée"]');
+    for (var i = 0; i < sel.options.length; i++) if (sel.options[i].text.slice(-(code.length + 2)) === "[" + code + "]") sel.selectedIndex = i;
+  }
   form.addEventListener("change", function (e) {
     if (e.target.name === "Avez-vous déjà suivi une formation en massage ?") bloc.classList.toggle("cache", e.target.value !== "Oui");
   });
