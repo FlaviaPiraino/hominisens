@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Questionnaires de satisfaction | HominiSens Formations</title>
+  <meta name="description" content="Questionnaires de satisfaction à chaud et à froid des formations HominiSens (organisme certifié Qualiopi).">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://www.hominisens.com/questionnaires.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Est-ce que remplir le dossier m'engage ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Le dossier me permet de faire connaissance avec vous et de vérifier que la formation correspond à votre projet. Vous ne vous engagez qu'à la signature du contrat de formation."}}, {"@type": "Question", "name": "Je ne sais pas encore quelle formation choisir", "acceptedAnswer": {"@type": "Answer", "text": "Choisissez celle qui vous attire le plus et décrivez votre projet : je vous conseillerai lors de notre échange. Vous pouvez aussi parcourir le catalogue des formations."}}, {"@type": "Question", "name": "Jusqu'à quand puis-je m'inscrire ?", "acceptedAnswer": {"@type": "Answer", "text": "Toute inscription est possible jusqu'à 7 jours avant le début de la session. Une inscription tardive implique simplement des modalités contractuelles et financières différentes, limitant par exemple le délai normal de rétractation (10 jours ouvrés de base)."}}, {"@type": "Question", "name": "Que deviennent mes informations ?", "acceptedAnswer": {"@type": "Answer", "text": "Elles servent uniquement à préparer votre inscription et les documents de votre formation. Elles ne sont jamais transmises à des tiers à des fins commerciales — voir la politique de confidentialité."}}]}</script>
+  <style>
+    .etapes.cinq { display: block; max-width: 820px; margin: 1.4rem auto 0; position: relative; }
+    .etapes.cinq::before { content: ""; position: absolute; left: calc(1.5rem + 1.1rem - 1px); top: 1.5rem; bottom: 1.5rem; width: 2px; background: var(--sauge-pale); }
+    .etapes.cinq .etape { position: relative; display: grid; grid-template-columns: 2.2rem 1fr; column-gap: 1.1rem; align-items: start; padding: 1.1rem 1.5rem; margin-bottom: .8rem; }
+    .etapes.cinq .etape::before { grid-row: 1 / span 2; margin: 0; }
+    .etapes.cinq .etape h3 { margin: .15rem 0 .25rem; font-size: 1.25rem; }
+    .etapes.cinq .etape p { margin: 0; }
+    @media (max-width: 640px) { .etapes.cinq .etape { padding: 1rem 1.1rem; column-gap: .9rem; } .etapes.cinq::before { left: calc(1.1rem + 1.1rem - 1px); } }
+    /* Dossier de candidature (formulaire natif, envoyé au formulaire Google de Vigie) */
+    .formulaire.dossier { max-width: 760px; text-align: left; padding: 2.2rem 2.4rem; }
+    .dossier .form-ligne { gap: 0 1rem; }
+    .dossier fieldset { border: 0; margin: 0 0 1.6rem; padding: 0; }
+    .dossier legend { font-family: var(--police-titres); font-size: 1.45rem; font-weight: 600; color: var(--or-fonce); margin-bottom: .9rem; display: flex; align-items: center; gap: .6rem; }
+    .dossier legend span { display: inline-flex; width: 2rem; height: 2rem; border-radius: 50%; background: var(--sauge-pale); color: var(--sauge-fonce); align-items: center; justify-content: center; font-size: 1.05rem; }
+    .dossier .req { color: var(--or-fonce); }
+    .dossier .aide { display: block; font-size: .82rem; color: var(--encre-douce); margin-top: .2rem; }
+    .dossier .groupe { margin-bottom: 1rem; font-size: .92rem; }
+    .dossier .choix { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .45rem; }
+    .dossier .choix label { margin: 0; }
+    .dossier .choix input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .dossier .choix label span { display: inline-block; padding: .5rem 1.1rem; border: 1px solid #ddd3c5; border-radius: 999px; background: var(--fond); cursor: pointer; transition: all .15s; }
+    .dossier .choix input:checked + span { background: var(--sauge); border-color: var(--sauge); color: #fff; }
+    .dossier .choix input:focus-visible + span { outline: 2px solid var(--or); outline-offset: 2px; }
+    .dossier select { appearance: none; -webkit-appearance: none; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2396703d' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") no-repeat right .9rem center; padding-right: 2.4rem; }
+    .dossier .engagement { display: grid; grid-template-columns: 1.3rem 1fr; gap: .6rem; align-items: start; font-size: .9rem; margin: .4rem 0 1rem; cursor: pointer; }
+    .dossier .engagement input { width: 1.15rem; height: 1.15rem; margin: .15rem 0 0; accent-color: var(--sauge); }
+    .dossier .rgpd { background: var(--sauge-pale); border-left: 3px solid var(--sauge); border-radius: 10px; padding: .9rem 1.1rem; font-size: .84rem; color: var(--encre); margin: 0 0 1.3rem; }
+    .dossier .cache, .dossier .piege { display: none; }
+    .dossier button[disabled] { opacity: .6; cursor: wait; }
+    .dossier-merci { max-width: 640px; margin: 1.5rem auto 0; background: var(--blanc); border-radius: var(--rayon); box-shadow: var(--ombre); padding: 2.2rem; text-align: center; }
+    .dossier-merci h3 { font-size: 1.7rem; margin-bottom: .6rem; }
+    @media (max-width: 640px) { .formulaire.dossier { padding: 1.5rem 1.2rem; } .dossier legend { font-size: 1.25rem; } }
+
+    /* Questionnaires de satisfaction */
+    .choix-q { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1000px; margin: 0 auto; text-align: left; }
+    .choix-q h2 { font-size: 1.9rem; margin: 0 0 .2rem; text-align: left; }
+    .choix-q .quand { color: var(--encre-douce); font-size: .92rem; margin: 0 0 1rem; }
+    .carte-q { display: block; width: 100%; text-align: left; font: inherit; color: inherit; background: var(--blanc); border: 1px solid transparent; border-radius: var(--rayon); box-shadow: var(--ombre); padding: 1.2rem 1.4rem; margin-bottom: .9rem; cursor: pointer; transition: transform .15s, border-color .15s; }
+    .carte-q:hover, .carte-q:focus-visible { transform: translateY(-2px); border-color: var(--sauge); outline: none; }
+    .carte-q strong { display: block; font-family: var(--police-titres); font-size: 1.35rem; font-weight: 600; color: var(--encre); margin: .35rem 0 .2rem; }
+    .carte-q span.txt { display: block; font-size: .88rem; color: var(--encre-douce); }
+    .carte-q span.go { display: inline-block; margin-top: .6rem; font-size: .85rem; color: var(--or-fonce); font-weight: 500; }
+    .badge-q { display: inline-block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; padding: .2rem .7rem; border-radius: 999px; background: var(--sauge-pale); color: var(--sauge-fonce); }
+    .badge-q.froid { background: #f3ead9; color: var(--or-fonce); }
+    .retour-q { background: none; border: 0; font: inherit; color: var(--or-fonce); cursor: pointer; padding: .3rem 0; margin: 0 auto 1rem; display: block; max-width: 760px; width: 100%; text-align: left; }
+    .entete-q { text-align: center; margin-bottom: 1.6rem; }
+    .entete-q h2 { font-size: 1.7rem; margin: .5rem 0 .4rem; }
+    .entete-q p { font-size: .82rem; color: var(--encre-douce); margin: 0; }
+    .infos-q { background: var(--fond); border-radius: 12px; padding: 1.2rem 1.3rem .4rem; margin-bottom: 1.6rem; }
+    .section-q { font-family: var(--police-titres); font-size: 1.35rem; font-weight: 600; color: var(--or-fonce); margin: 1.8rem 0 .9rem; padding-bottom: .35rem; border-bottom: 1px solid #eadfcd; }
+    .info-q { font-style: italic; color: var(--encre-douce); margin: .4rem 0 1rem; }
+    .dossier .q { margin-bottom: 1.25rem; }
+    .dossier .q > .titre-q { display: block; font-size: .95rem; margin-bottom: .1rem; }
+    .dossier .choix.liste { flex-direction: column; align-items: stretch; }
+    .dossier .choix.liste label span { display: block; border-radius: 12px; }
+    .echelle { display: grid; grid-template-columns: repeat(5, 1fr); gap: .45rem; margin-top: .5rem; }
+    .echelle label { margin: 0; }
+    .echelle input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .echelle span { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; height: 100%; padding: .55rem .3rem; border: 1px solid #ddd3c5; border-radius: 12px; background: var(--fond); cursor: pointer; text-align: center; font-size: .72rem; line-height: 1.25; color: var(--encre-douce); transition: all .15s; }
+    .echelle span b { font-family: var(--police-titres); font-size: 1.6rem; line-height: 1.1; color: var(--encre); font-weight: 600; }
+    .echelle input:checked + span { background: var(--sauge); border-color: var(--sauge); color: #fff; }
+    .echelle input:checked + span b { color: #fff; }
+    .echelle input:focus-visible + span { outline: 2px solid var(--or); outline-offset: 2px; }
+    .engagement-q { background: var(--sauge-pale); border-left: 3px solid var(--sauge); border-radius: 10px; padding: 1rem 1.1rem .3rem; margin: 1.6rem 0 1.2rem; }
+    .engagement-q .titre-q { font-weight: 500; }
+    .engagement-q blockquote { margin: .4rem 0 .6rem; font-style: italic; font-size: .92rem; }
+    #zone-q[hidden], #choix[hidden] { display: none; }
+    @media (max-width: 760px) { .choix-q { grid-template-columns: 1fr; gap: 1rem; } }
+    @media (max-width: 520px) { .echelle { gap: .3rem; } .echelle span { font-size: .62rem; padding: .45rem .15rem; } }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu principal</a>
+<nav aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a class="nav-marque" href="index.html">Homini<span>Sens</span></a>
+    <ul id="menu-principal">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="soins.html">Soins</a></li>
+      <li><a href="tarifs.html">Tarifs</a></li>
+      <li><a href="formations.html" class="actif">Formations</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="qui-suis-je.html">Qui suis-je ?</a></li>
+      <li><a href="univers-massage-bien-etre.html">Univers bien-être</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="nav-cta" href="contact.html">Réserver</a>
+      <button class="nav-burger" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<header class="hero compact">
+  <p class="surtitre">HominiSens Formations - Certifié Qualiopi</p>
+  <h1>Votre avis compte</h1>
+  <p class="sous-titre">Quelques minutes pour me dire comment s'est passée votre formation : vos réponses m'aident à l'améliorer sans cesse.</p>
+</header>
+
+<main id="contenu">
+  <section id="choix">
+    <p class="intro" style="text-align:center;max-width:640px;margin:0 auto 2rem;">Choisissez le questionnaire qui vous concerne. En cas de doute, le lien reçu par e-mail ouvre directement le bon questionnaire.</p>
+    <div class="choix-q">
+      <div>
+        <h2>À chaud</h2>
+        <p class="quand">À remplir en fin de formation</p>
+        <div id="liste-chaud"></div>
+      </div>
+      <div>
+        <h2>À froid</h2>
+        <p class="quand">À remplir environ 3 mois après la formation</p>
+        <div id="liste-froid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="zone-q" hidden>
+    <button type="button" class="retour-q" id="retour-q">← Choisir un autre questionnaire</button>
+    <form class="formulaire dossier" id="form-q" novalidate>
+      <div class="entete-q"><span class="badge-q" id="badge-q"></span><h2 id="titre-q"></h2><p id="sous-titre-q"></p></div>
+      <div id="corps-q"></div>
+      <label class="piege" aria-hidden="true">Site web<input type="text" name="site_web" tabindex="-1" autocomplete="off"></label>
+      <p class="rgpd">Vos réponses servent uniquement à évaluer et améliorer la formation (démarche qualité Qualiopi). Elles ne sont jamais transmises à des tiers. <a href="confidentialite.html">Politique de confidentialité</a></p>
+      <p id="erreur-q" role="alert" style="color:#a33;font-size:.9rem;"></p>
+      <p style="text-align:center;margin:0;"><button class="bouton" type="submit">Envoyer mes réponses</button></p>
+    </form>
+    <div class="dossier-merci" id="merci-q" hidden>
+      <h3>Merci pour vos réponses !</h3>
+      <p>Elles ont bien été transmises à HominiSens Formations. Votre avis m'est précieux.</p>
+      <p style="margin-top:1.2rem;"><button type="button" class="bouton contour" id="autre-q">Remplir un nouveau questionnaire</button></p>
+    </div>
+  </section>
+</main>
+
+
+<footer>
+  <div class="footer-grille">
+    <div>
+      <h3>HominiSens</h3>
+      <p>Massages bien-être sur-mesure &amp; formations professionnelles — organisme certifié Qualiopi.<br>
+      Mouvaux (59) — soins en cabinet, et à domicile sur demande (20&nbsp;km).</p>
+      <p class="petit" style="margin-top:.6rem;">Massages bien-être non thérapeutiques et non sexuels.</p>
+    </div>
+    <div>
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="soins.html">La carte des soins</a></li>
+        <li><a href="tarifs.html">Tarifs &amp; offres</a></li>
+        <li><a href="formations.html">Les formations Qualiopi</a></li>
+        <li><a href="techniques-tarifs.html">Catalogue des formations</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="qui-suis-je.html">Qui suis-je ?</a></li>
+        <li><a href="contact.html">Réserver / Contact</a></li>
+        <li><a href="univers-massage-bien-etre.html">L'univers du massage bien-être</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <ul>
+        <li>Flavia Piraino</li>
+        <li><a href="tel:0674252554">06 74 25 25 54</a></li>
+        <li><a href="mailto:flaviapiraino@gmail.com">flaviapiraino@gmail.com</a></li>
+        <li><a href="https://facebook.com/HominiSens">Facebook</a></li>
+        <li><a href="https://instagram.com/hominisens">Instagram</a></li>
+        <li><a href="https://www.instagram.com/hominisens_formations/">Instagram Formations</a></li>
+        <li><a href="https://g.page/r/Ceg3Nqg4VS6DEAE/review">Avis Google</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Documents</h3>
+      <ul>
+        <li><a href="documents/cgv-prestations.pdf">CGV prestations de services</a></li>
+        <li><a href="documents/cgv-formations.pdf">CGV HominiSens Formations</a></li>
+        <li><a href="documents/certificat-qualiopi.pdf">Certificat Qualiopi</a></li>
+        <li><a href="documents/accessibilite-handicap.pdf">Accessibilité Handicap</a></li>
+        <li><a href="documents/mentions-legales.pdf">Mentions légales</a></li>
+        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bas">
+    Tous droits réservés HominiSens — PIRAINO Flavia | Mise à jour du site 07/2026. · <a href="redaction.html" rel="nofollow">Admin</a>
+  </div>
+</footer>
+
+<div class="barre-mobile">
+  <a href="tel:0674252554">Appeler</a>
+  <a href="contact.html">Réserver</a>
+</div>
+
+<script>
+(function () {
+  var b = document.querySelector(".nav-burger");
+  var n = document.querySelector("nav");
+  if (b) b.addEventListener("click", function () {
+    var o = n.classList.toggle("ouvert");
+    b.setAttribute("aria-expanded", o ? "true" : "false");
+    b.setAttribute("aria-label", o ? "Fermer le menu" : "Ouvrir le menu");
+  });
+})();
+</script>
+<script>
+/* Questionnaires de satisfaction : chaque questionnaire est relié à un formulaire Google créé par Vigie. */
+(function () {
+  var Q = [{"cle": "chaud-stagiaire", "moment": "chaud", "public": "Stagiaire", "carte": "Auto-évaluation et satisfaction du stagiaire, en fin de formation", "titre": "QUESTIONNAIRE : AUTO EVALUATION - SATISFACTION (à chaud)", "entete": "Organisme de Formation : HOMINISENS FORMATIONS | N° déclaration d'activité : 32591057659 · Formateur : PIRAINO FLAVIA", "questions": [{"id": "nom", "type": "texte", "titre": "Nom Prénom du stagiaire", "req": true}, {"id": "formation", "type": "texte", "titre": "Nom de la formation", "req": true, "prefill": "formation"}, {"id": "du", "type": "date", "titre": "Date de la formation : du", "prefill": "du"}, {"id": "au", "type": "date", "titre": "Date de la formation : au", "prefill": "au"}, {"id": "heures", "type": "nombre", "titre": "Heures totales dispensées (h)", "prefill": "heures"}, {"id": "lieu", "type": "texte", "titre": "Lieu de la formation", "prefill": "lieu"}, {"id": "intro", "type": "info", "titre": "En toute transparence et confidentialité, selon toi ;"}, {"id": "q1", "type": "choix", "titre": "1. Te sens-tu capable de pratiquer sereinement ce protocole ?", "options": ["Oui", "Moyennement", "Pas du tout"], "req": true}, {"id": "q2", "type": "choix", "titre": "2. Les objectifs de la session de formation ont-ils été clairs et atteints ?", "options": ["Oui", "Moyennement", "Pas du tout"], "req": true}, {"id": "q3", "type": "choix", "titre": "3. Le contenu du protocole était-il adapté et suffisamment riche ?", "options": ["Oui", "Moyennement", "Pas du tout"], "req": true}, {"id": "q3b", "type": "paragraphe", "titre": "(Si « moyen » ou « pas du tout », n'hésite pas à me dire ce que tu aurais aimé retrouver)", "si": {"q": "q3", "valeurs": ["Moyennement", "Pas du tout"]}}, {"id": "q4", "type": "choix", "titre": "4. La pédagogie employée (formateur) était :", "options": ["Bonne & Adaptée", "Moyenne, à conforter", "Trop Insuffisante"], "req": true}, {"id": "q5", "type": "choix", "titre": "5. Les moyens pédagogiques utilisés étaient :", "options": ["Adaptés", "Moyennement adaptés", "Non adaptés"], "req": true}, {"id": "q6", "type": "choix", "titre": "6. La structure d'accueil de la formation était :", "options": ["Adaptée", "Moyennement adaptée", "Non adaptée"], "req": true}, {"id": "q7p", "type": "paragraphe", "titre": "7. Qu'as-tu le plus aimé et le moins aimé durant cette session de formation ? Le(s) +"}, {"id": "q7m", "type": "paragraphe", "titre": "7. Qu'as-tu le plus aimé et le moins aimé durant cette session de formation ? Le(s) -"}, {"id": "q8", "type": "echelle", "titre": "8. Sur une échelle de 1 à 5 : quel est votre niveau de satisfaction vis-à-vis de cette formation ?", "options": ["1 : Pas du tout Satisfait", "2 : Peu Satisfait", "3 : Neutre", "4 : Satisfait", "5 : Très Satisfait"], "req": true}, {"id": "q9", "type": "choix", "titre": "9. Recommanderais-tu cette formation à tes proches ?", "options": ["Oui", "Non"], "req": true}, {"id": "sugg", "type": "paragraphe", "titre": "✍️ Suggestions / autres commentaires libres"}, {"id": "engagement", "type": "engagement", "titre": "✍️ Engagement personnel", "texte": "« En signant ce document, je m'engage à pratiquer régulièrement afin d'intégrer les apprentissages et conforter ma technique et prise en charge de la personne massée. »", "label": "Je signe cet engagement", "req": true}, {"id": "faita", "type": "texte", "titre": "Fait à"}]}, {"cle": "chaud-public", "moment": "chaud", "public": "Stagiaire · financement public", "carte": "Satisfaction du stagiaire dont la formation est financée (France Travail, FAF, Région…)", "titre": "QUESTIONNAIRE DE SATISFACTION À CHAUD – STAGIAIRE FINANCEMENT PUBLIC", "entete": "HOMINISENS FORMATIONS · 58 rue de Londres – 59420 Mouvaux · SIRET : 848 655 445 00023 · N° déclaration d'activité : 32591057659 (Hauts-de-France) · Cet enregistrement ne vaut pas agrément de l'État.", "questions": [{"id": "s1", "type": "section", "titre": "1. INFORMATIONS SUR LA FORMATION"}, {"id": "nom", "type": "texte", "titre": "Nom – Prénom du stagiaire", "req": true}, {"id": "formation", "type": "texte", "titre": "Nom de la formation / forfait", "req": true, "prefill": "formation"}, {"id": "du", "type": "date", "titre": "Date(s) de la formation : du", "prefill": "du"}, {"id": "au", "type": "date", "titre": "Date(s) de la formation : au", "prefill": "au"}, {"id": "heures", "type": "nombre", "titre": "Heures totales dispensées (h)", "prefill": "heures"}, {"id": "lieu", "type": "texte", "titre": "Lieu de la formation", "prefill": "lieu"}, {"id": "formateur", "type": "info", "titre": "Formateur : PIRAINO FLAVIA"}, {"id": "fin", "type": "choix", "titre": "Mode de financement mobilisé", "options": ["France Travail", "FAF", "Région", "CPF", "Autre"], "req": true}, {"id": "finp", "type": "texte", "titre": "Mode de financement : à préciser (FAF ou Autre)", "si": {"q": "fin", "valeurs": ["FAF", "Autre"]}}, {"id": "s2", "type": "section", "titre": "2. ORGANISATION & COMMUNICATION"}, {"id": "a1", "type": "choix", "titre": "La communication avec l'organisme de formation a-t-elle été claire et satisfaisante ?", "options": ["Oui tout à fait", "Plutôt oui", "Plutôt non", "Pas du tout"], "req": true}, {"id": "a2", "type": "choix", "titre": "Les informations transmises avant et pendant la formation étaient-elles suffisantes et compréhensibles ?", "options": ["Oui", "Non"], "req": true}, {"id": "a3", "type": "choix", "titre": "La durée, le rythme, les horaires et les modalités de la formation étaient-ils adaptés à votre situation ?", "options": ["Oui", "Non"], "req": true}, {"id": "s3", "type": "section", "titre": "3. CONTENU & ADÉQUATION AU PROJET PROFESSIONNEL"}, {"id": "b1", "type": "choix", "titre": "La formation correspondait-elle à votre projet professionnel ?", "options": ["Oui, tout à fait", "Plutôt oui", "Plutôt non", "Pas du tout"], "req": true}, {"id": "b2", "type": "choix", "titre": "Les objectifs de la formation correspondaient-ils à vos besoins professionnels ?", "options": ["Oui, tout à fait", "Plutôt oui", "Plutôt non", "Pas du tout"], "req": true}, {"id": "b3", "type": "choix", "titre": "Le contenu de la formation était-il adapté à votre niveau et à vos attentes ?", "options": ["Oui, tout à fait", "Plutôt oui", "Plutôt non", "Pas du tout"], "req": true}, {"id": "b4", "type": "choix", "titre": "Les compétences acquises vous paraissent-elles utiles pour votre activité ou votre projet professionnel ?", "options": ["Oui, tout à fait", "Plutôt oui", "Plutôt non", "Pas du tout"], "req": true}, {"id": "s4", "type": "section", "titre": "4. SATISFACTION GLOBALE"}, {"id": "c1", "type": "choix", "titre": "La formation a-t-elle répondu à vos attentes ?", "options": ["Oui tout à fait", "Plutôt oui", "Plutôt non", "Pas du tout"], "req": true}, {"id": "c2", "type": "choix", "titre": "À l'issue de la formation, estimez-vous avoir progressé dans votre projet professionnel ?", "options": ["Oui", "En partie", "Non"], "req": true}, {"id": "satis", "type": "echelle", "titre": "Sur une échelle de 1 à 5, quel est votre niveau de satisfaction vis-à-vis de cette formation ?", "options": ["1 : Pas du tout satisfait", "2 : Peu satisfait", "3 : Neutre", "4 : Satisfait", "5 : Très satisfait"], "req": true}, {"id": "s5", "type": "section", "titre": "5. COMMENTAIRE LIBRE"}, {"id": "comm", "type": "paragraphe", "titre": "Précisions, points forts, axes d'amélioration, suggestions"}, {"id": "signature", "type": "engagement", "titre": "Signature du stagiaire", "texte": "", "label": "Je valide ce questionnaire (vaut signature du stagiaire)", "req": true}, {"id": "faita", "type": "texte", "titre": "Fait à"}]}, {"cle": "chaud-employeur", "moment": "chaud", "public": "Employeur", "carte": "Satisfaction de l'employeur qui a financé la formation de son salarié", "titre": "QUESTIONNAIRE DE SATISFACTION A CHAUD EMPLOYEUR", "entete": "Organisme de Formation : HOMINISENS FORMATIONS | N° déclaration d'activité : 32591057659 · Formateur : PIRAINO FLAVIA", "questions": [{"id": "entreprise", "type": "texte", "titre": "NOM DE L'ENTREPRISE", "req": true}, {"id": "nom", "type": "texte", "titre": "Nom Prénom du stagiaire reçu", "req": true}, {"id": "formation", "type": "texte", "titre": "Nom de la formation ou forfait", "req": true, "prefill": "formation"}, {"id": "du", "type": "date", "titre": "Date(s) de la formation : du", "prefill": "du"}, {"id": "au", "type": "date", "titre": "Date(s) de la formation : au", "prefill": "au"}, {"id": "heures", "type": "nombre", "titre": "Heures totales dispensées (h)", "prefill": "heures"}, {"id": "lieu", "type": "texte", "titre": "Lieu de la formation", "prefill": "lieu"}, {"id": "s1", "type": "section", "titre": "1. Organisation & Communication"}, {"id": "a1", "type": "choix", "titre": "La Communication avec l'organisme a-t-elle été claire et satisfaisante ?", "options": ["Oui tout à fait", "Plutôt oui", "Plutôt non", "Pas du tout"], "req": true}, {"id": "a2", "type": "choix", "titre": "La durée et le rythme de la formation étaient-ils adaptés aux contraintes de l'entreprise ?", "options": ["Oui", "Non"], "req": true}, {"id": "s2", "type": "section", "titre": "2. Contenu & Adaptation"}, {"id": "b1", "type": "choix", "titre": "Les objectifs de la formation correspondaient-ils aux besoins identifiés pour votre salarié(e) ?", "options": ["Oui, tout à fait", "Plutôt oui", "Plutôt non", "Non, pas du tout"], "req": true}, {"id": "b2", "type": "choix", "titre": "La formation a-t-elle été adaptée au contexte de votre entreprise ?", "options": ["Oui, tout à fait", "Plutôt oui", "Plutôt non", "Non, pas du tout"], "req": true}, {"id": "b3", "type": "choix", "titre": "Les compétences acquises par votre salarié(e) répondent-elles à vos attentes professionnelles, selon le cadre du financement employeur ?", "options": ["Oui, tout à fait", "Plutôt oui", "Plutôt non", "Non, pas du tout"], "req": true}, {"id": "s3", "type": "section", "titre": "3. Satisfaction globale"}, {"id": "c1", "type": "choix", "titre": "Souhaiteriez-vous à nouveau former d'autres salariés sur ce type de prestation ?", "options": ["Oui", "Non"], "req": true}, {"id": "satis", "type": "echelle", "titre": "Sur une échelle de 1 à 5 : quel est votre niveau de satisfaction vis-à-vis de cette formation ?", "options": ["1 : Pas du tout Satisfait", "2 : Peu Satisfait", "3 : Neutre", "4 : Satisfait", "5 : Très Satisfait"], "req": true}, {"id": "s4", "type": "section", "titre": "4. Commentaire libre"}, {"id": "comm", "type": "paragraphe", "titre": "Commentaire libre (précisions, axes d'amélioration, suggestions…)"}, {"id": "signature", "type": "engagement", "titre": "Signature de l'employeur ou responsable pôle formation", "texte": "", "label": "Je valide ce questionnaire (vaut signature)", "req": true}, {"id": "faita", "type": "texte", "titre": "Fait à"}]}, {"cle": "froid-stagiaire", "moment": "froid", "public": "Stagiaire", "carte": "Suivi du stagiaire environ 3 mois après la formation", "titre": "QUESTIONNAIRE DE SATISFACTION (à froid : environ 3 mois post formation)", "entete": "Organisme de Formation : HOMINISENS FORMATIONS | N° déclaration d'activité : 32591057659 · Formateur : PIRAINO FLAVIA", "questions": [{"id": "nom", "type": "texte", "titre": "Nom Prénom du stagiaire", "req": true}, {"id": "formation", "type": "texte", "titre": "Nom de la formation suivie", "req": true, "prefill": "formation"}, {"id": "lieu", "type": "texte", "titre": "Lieu de la formation", "defaut": "58 rue de Londres - Mouvaux", "prefill": "lieu"}, {"id": "q1", "type": "echelle", "titre": "1. Sur une échelle de 1 à 5 : quel est votre niveau de satisfaction vis-à-vis de cette formation ?", "options": ["1 : Pas du tout Satisfait", "2 : Peu Satisfait", "3 : Neutre", "4 : Satisfait", "5 : Très Satisfait"], "req": true}, {"id": "q2", "type": "choix", "titre": "2. Avez-vous pu mettre en œuvre les compétences acquises dans votre pratique ?", "options": ["Oui", "Pas encore", "Non"], "req": true}, {"id": "q2r", "type": "choix", "titre": "-> Si « Pas encore » ou « Non », savez-vous indiquer les raisons ?", "options": ["Je n'ai pas eu l'occasion d'utiliser ces nouvelles compétences", "Je n'ai pas su/pu réviser le protocole par manque de temps", "Je n'avais pas le matériel adéquat", "J'ai été confrontée à des obstacles financiers ou hiérarchiques", "Le contenu de la formation n'était finalement pas adapté à ma pratique", "Autre"], "si": {"q": "q2", "valeurs": ["Pas encore", "Non"]}}, {"id": "q2r_autre", "type": "texte", "titre": "Autre (précisez)", "si": {"q": "q2r", "valeurs": ["Autre"]}}, {"id": "q2o", "type": "choix", "titre": "-> Si « Oui », avez-vous réutilisé le contenu pédagogique pour réviser le protocole ?", "options": ["Oui, le protocole et les affiches", "Oui, le protocole uniquement", "Oui, les affiches uniquement", "Non, ni le protocole ni les affiches"], "si": {"q": "q2", "valeurs": ["Oui"]}}, {"id": "q3", "type": "choix", "titre": "3. Avez-vous eu besoin d'échanger avec le formateur après votre formation ?", "options": ["Oui", "Non"], "req": true}, {"id": "q4", "type": "choix", "titre": "4. La formation vous a-t-elle aidé(e) à progresser professionnellement (nouvelle activité, évolution, confiance) ?", "options": ["Oui", "Partiellement", "Non"], "req": true}, {"id": "q5", "type": "choix", "titre": "5. Finalement, recommanderiez-vous cette formation ?", "options": ["Oui, tout à fait", "Non, pas spécialement"], "req": true}, {"id": "q5car", "type": "texte", "titre": "Non, pas spécialement car :", "si": {"q": "q5", "valeurs": ["Non, pas spécialement"]}}, {"id": "q6", "type": "paragraphe", "titre": "6. Commentaire libre (précisions, axes d'amélioration, suggestions…)"}, {"id": "q7", "type": "choix", "titre": "7. Souhaiteriez-vous suivre une autre formation chez HominiSens Formations ?", "options": ["Oui", "Non"]}, {"id": "q7l", "type": "texte", "titre": "Si oui, laquelle ou lesquelles ?", "si": {"q": "q7", "valeurs": ["Oui"]}}, {"id": "signature", "type": "engagement", "titre": "Signature de l'apprenant", "texte": "", "label": "Je valide ce questionnaire (vaut signature de l'apprenant)", "req": true}, {"id": "faita", "type": "texte", "titre": "Fait à"}]}, {"cle": "froid-public", "moment": "froid", "public": "Stagiaire · financement public", "carte": "Suivi à froid du stagiaire dont la formation est financée (France Travail, FAF, Région…)", "titre": "QUESTIONNAIRE DE SUIVI À FROID – STAGIAIRE FINANCEMENT PUBLIC", "entete": "HOMINISENS FORMATIONS · 58 rue de Londres – 59420 Mouvaux · SIRET : 848 655 445 00023 · N° déclaration d'activité : 32591057659 (Hauts-de-France) · Cet enregistrement ne vaut pas agrément de l'État.", "questions": [{"id": "s1", "type": "section", "titre": "1. INFORMATIONS SUR LA FORMATION"}, {"id": "nom", "type": "texte", "titre": "Nom – Prénom du stagiaire", "req": true}, {"id": "formation", "type": "texte", "titre": "Nom de la formation / forfait", "req": true, "prefill": "formation"}, {"id": "du", "type": "date", "titre": "Date(s) de la formation : du", "prefill": "du"}, {"id": "au", "type": "date", "titre": "Date(s) de la formation : au", "prefill": "au"}, {"id": "datequest", "type": "date", "titre": "Date du présent questionnaire", "defaut": "aujourdhui"}, {"id": "mois", "type": "nombre", "titre": "Nombre de mois depuis la formation"}, {"id": "formateur", "type": "info", "titre": "Formateur : PIRAINO FLAVIA"}, {"id": "fin", "type": "choix", "titre": "Mode de financement mobilisé", "options": ["France Travail", "FAF", "Région", "CPF", "Autre"], "req": true}, {"id": "finp", "type": "texte", "titre": "Mode de financement : à préciser (FAF ou Autre)", "si": {"q": "fin", "valeurs": ["FAF", "Autre"]}}, {"id": "s2", "type": "section", "titre": "2. MISE EN APPLICATION DES ACQUIS"}, {"id": "b1", "type": "choix", "titre": "Depuis la formation, avez-vous pu mettre en pratique les compétences ou techniques acquises ?", "options": ["Oui régulièrement", "Oui ponctuellement", "Très peu", "Pas encore"], "req": true}, {"id": "b2", "type": "choix", "titre": "Les compétences acquises sont-elles aujourd'hui utiles dans votre activité ou votre projet professionnel ?", "options": ["Oui, tout à fait", "Plutôt oui", "Plutôt non", "Pas du tout"], "req": true}, {"id": "b3", "type": "choix", "titre": "Avez-vous rencontré des difficultés pour mettre en pratique les acquis de la formation ?", "options": ["Non", "Oui, peu", "Oui, plusieurs"], "req": true}, {"id": "b3p", "type": "paragraphe", "titre": "Si oui, souhaitez-vous préciser ces difficultés ?", "si": {"q": "b3", "valeurs": ["Oui, peu", "Oui, plusieurs"]}}, {"id": "s3", "type": "section", "titre": "3. ÉVOLUTION DU PROJET PROFESSIONNEL"}, {"id": "c1", "type": "choix", "titre": "La formation a-t-elle contribué à faire évoluer votre projet professionnel ?", "options": ["Oui, fortement", "Oui, en partie", "Peu", "Pas du tout"], "req": true}, {"id": "c2", "type": "choix", "titre": "La formation vous a-t-elle permis de développer ou renforcer une activité professionnelle ?", "options": ["Oui", "En partie", "Non", "Non concerné"], "req": true}, {"id": "c3", "type": "choix", "titre": "Depuis la formation, avez-vous pu utiliser les compétences acquises dans un cadre professionnel ?", "options": ["Oui régulièrement", "Oui ponctuellement", "Pas encore"], "req": true}, {"id": "c4", "type": "choix", "titre": "La formation vous a-t-elle aidé(e) dans votre évolution professionnelle, votre création/développement d'activité ou votre retour à l'emploi ?", "options": ["Oui, tout à fait", "En partie", "Peu", "Pas du tout", "Non concerné"], "req": true}, {"id": "s4", "type": "section", "titre": "4. BILAN À FROID"}, {"id": "d1", "type": "choix", "titre": "Avec le recul, la formation répond-elle toujours à vos besoins professionnels ?", "options": ["Oui tout à fait", "Plutôt oui", "Plutôt non", "Pas du tout"], "req": true}, {"id": "d2", "type": "echelle", "titre": "Avec le recul, quel est votre niveau de satisfaction concernant cette formation ?", "options": ["1 : Pas du tout satisfait", "2 : Peu satisfait", "3 : Neutre", "4 : Satisfait", "5 : Très satisfait"], "req": true}, {"id": "d3", "type": "choix", "titre": "Recommanderiez-vous cette formation à une personne ayant un projet professionnel similaire ?", "options": ["Oui", "Non"], "req": true}, {"id": "s5", "type": "section", "titre": "5. COMMENTAIRE & RETOUR D'EXPÉRIENCE"}, {"id": "e1", "type": "paragraphe", "titre": "Quels bénéfices concrets retenez-vous de cette formation ?"}, {"id": "e2", "type": "paragraphe", "titre": "Avez-vous une suggestion ou un besoin complémentaire à nous faire connaître ?"}, {"id": "signature", "type": "engagement", "titre": "Signature du stagiaire", "texte": "", "label": "Je valide ce questionnaire (vaut signature du stagiaire)", "req": true}, {"id": "faita", "type": "texte", "titre": "Fait à"}]}, {"cle": "froid-employeur", "moment": "froid", "public": "Employeur · financeur", "carte": "Satisfaction de l'employeur ou du financeur, environ 3 mois après la formation", "titre": "QUESTIONNAIRE DE SATISFACTION EMPLOYEURS (à froid : environ 3 mois post formation)", "entete": "Organisme de Formation : HOMINISENS FORMATIONS | N° déclaration d'activité : 32591057659 · Formateur : PIRAINO FLAVIA", "questions": [{"id": "nom", "type": "texte", "titre": "Nom Prénom du stagiaire reçu", "req": true}, {"id": "formation", "type": "texte", "titre": "Nom de la formation", "req": true, "prefill": "formation"}, {"id": "du", "type": "date", "titre": "Date de la formation : du", "prefill": "du"}, {"id": "au", "type": "date", "titre": "Date de la formation : au", "prefill": "au"}, {"id": "heures", "type": "nombre", "titre": "Heures totales dispensées (h)", "prefill": "heures"}, {"id": "lieu", "type": "texte", "titre": "Lieu de la formation", "prefill": "lieu"}, {"id": "q1", "type": "echelle", "titre": "1. Sur une échelle de 1 à 5 : quel est votre niveau de satisfaction vis-à-vis de cette formation ?", "options": ["1 : Pas du tout Satisfait", "2 : Peu Satisfait", "3 : Neutre", "4 : Satisfait", "5 : Très Satisfait"], "req": true}, {"id": "s2", "type": "section", "titre": "2. Utilité de la formation"}, {"id": "q2a", "type": "choix", "titre": "Les compétences acquises par votre salarié correspondent-elles aux attentes initiales ?", "options": ["Oui", "Partiellement", "Non"], "req": true}, {"id": "q2b", "type": "choix", "titre": "Les acquis sont-ils mis en pratique dans l'activité de l'entreprise ?", "options": ["Oui régulièrement", "Parfois", "Non"], "req": true}, {"id": "s3", "type": "section", "titre": "3. Organisation"}, {"id": "q3", "type": "choix", "titre": "La durée et le rythme de la formation étaient-ils adaptés aux contraintes de l'entreprise ?", "options": ["Oui", "Non"], "req": true}, {"id": "s4", "type": "section", "titre": "4. Impact"}, {"id": "q4a", "type": "choix", "titre": "La formation a-t-elle eu un impact positif sur la qualité du travail ou la satisfaction client ?", "options": ["Oui", "Partiellement", "Non"], "req": true}, {"id": "q4b", "type": "choix", "titre": "Souhaiteriez-vous à nouveau former d'autres salariés sur ce type de prestation ?", "options": ["Oui", "Non"], "req": true}, {"id": "q4c", "type": "choix", "titre": "Souhaiteriez-vous à nouveau former d'autres salariés sur d'autres types de prestations HominiSens Formations ?", "options": ["Oui tout à fait", "Non pas spécialement"], "req": true}, {"id": "q6", "type": "paragraphe", "titre": "6. Commentaire libre (précisions, axes d'amélioration, suggestions…)"}, {"id": "signature", "type": "engagement", "titre": "Signature de l'employeur ou responsable pôle formation", "texte": "", "label": "Je valide ce questionnaire (vaut signature)", "req": true}, {"id": "faita", "type": "texte", "titre": "Fait à"}]}];
+  var CHAMPS = {"chaud-stagiaire": {"envoi": "https://docs.google.com/forms/d/e/1FAIpQLScj5To3_Q1G-mN1PTvSxtyiwFFe79RzNOGSGbUe-oz1XgCguQ/formResponse", "e": {"code": "entry.218709773", "nom": "entry.1037653975", "formation": "entry.442025469", "du": "entry.1973854988", "au": "entry.672965836", "heures": "entry.1299129507", "lieu": "entry.1602918778", "q1": "entry.1474808551", "q2": "entry.1937716874", "q3": "entry.20248114", "q3b": "entry.405061379", "q4": "entry.578864951", "q5": "entry.1829357754", "q6": "entry.1819292571", "q7p": "entry.1325420185", "q7m": "entry.1622169669", "q8": "entry.409375900", "q9": "entry.1609724318", "sugg": "entry.1314601823", "engagement": "entry.522021889", "faita": "entry.344548409"}}, "chaud-public": {"envoi": "https://docs.google.com/forms/d/e/1FAIpQLSdVbltBDQJ_JQJJ7_AkWScxoxBKDa9l0s1WL66XmAvLCsuRzQ/formResponse", "e": {"code": "entry.383787205", "nom": "entry.2084499298", "formation": "entry.1653624558", "du": "entry.1113849600", "au": "entry.1186648765", "heures": "entry.333670755", "lieu": "entry.117596685", "fin": "entry.1224160941", "finp": "entry.1985081948", "a1": "entry.1045290431", "a2": "entry.1356917937", "a3": "entry.1281918733", "b1": "entry.1648242236", "b2": "entry.1778443186", "b3": "entry.1646293525", "b4": "entry.494181586", "c1": "entry.2052964131", "c2": "entry.1149614082", "satis": "entry.2041647373", "comm": "entry.1678482179", "signature": "entry.1242631960", "faita": "entry.1867637360"}}, "chaud-employeur": {"envoi": "https://docs.google.com/forms/d/e/1FAIpQLSc0_M7W6C7_PfF4S8NXxBkVSBXuKL-eJFsXHA6vrDdz_yQ1Ew/formResponse", "e": {"code": "entry.207533818", "entreprise": "entry.607864551", "nom": "entry.954914579", "formation": "entry.626390136", "du": "entry.515014960", "au": "entry.841310539", "heures": "entry.517509525", "lieu": "entry.912545147", "a1": "entry.568453725", "a2": "entry.6715640", "b1": "entry.1420490972", "b2": "entry.120034286", "b3": "entry.473723179", "c1": "entry.1514070420", "satis": "entry.1432530952", "comm": "entry.173924401", "signature": "entry.1008380441", "faita": "entry.2024000162"}}, "froid-stagiaire": {"envoi": "https://docs.google.com/forms/d/e/1FAIpQLSfc_-avq4NE6_xcMd_L8L-H1rDs92g6OYRFJoNPIB9AaFSLXA/formResponse", "e": {"code": "entry.718627466", "nom": "entry.776189606", "formation": "entry.1811233154", "lieu": "entry.1555884299", "q1": "entry.1812329086", "q2": "entry.478126619", "q2r": "entry.1263767078", "q2r_autre": "entry.1393281938", "q2o": "entry.640554475", "q3": "entry.952568993", "q4": "entry.378072142", "q5": "entry.1879937694", "q5car": "entry.1604236197", "q6": "entry.233979971", "q7": "entry.1720771084", "q7l": "entry.2082896982", "signature": "entry.1537191289", "faita": "entry.132686773"}}, "froid-public": {"envoi": "https://docs.google.com/forms/d/e/1FAIpQLSeKHaLIHtfapRS-l4qKypgrSvPTUhezckzoo-MXMxgiChPEdg/formResponse", "e": {"code": "entry.1218808538", "nom": "entry.1801147163", "formation": "entry.1632790174", "du": "entry.403648951", "au": "entry.298996619", "datequest": "entry.98824182", "mois": "entry.734632448", "fin": "entry.1443644134", "finp": "entry.1845849162", "b1": "entry.75430553", "b2": "entry.581498682", "b3": "entry.363886268", "b3p": "entry.454075860", "c1": "entry.405065547", "c2": "entry.1836453265", "c3": "entry.359140053", "c4": "entry.265406085", "d1": "entry.29118162", "d2": "entry.130823032", "d3": "entry.1354075944", "e1": "entry.51469236", "e2": "entry.1912087541", "signature": "entry.370691770", "faita": "entry.1935761613"}}, "froid-employeur": {"envoi": "https://docs.google.com/forms/d/e/1FAIpQLSe4dhPWY6-BWgVTcUUuBInD2xHzkWYvFAxLYtAdY34qv1eawg/formResponse", "e": {"code": "entry.1672921288", "nom": "entry.1909740191", "formation": "entry.571250576", "du": "entry.1240055451", "au": "entry.1567550311", "heures": "entry.2083113567", "lieu": "entry.832025020", "q1": "entry.1270889154", "q2a": "entry.983809795", "q2b": "entry.2079114128", "q3": "entry.1081149736", "q4a": "entry.196196344", "q4b": "entry.1226113545", "q4c": "entry.2069015682", "q6": "entry.820107020", "signature": "entry.1706906075", "faita": "entry.523369147"}}}; // cle -> { envoi: URL formResponse, e: { idQuestion: "entry.xxx", code: "entry.yyy" } }
+  var PUBLIC = { "Stagiaire": "Stagiaire", "Financé": "Stagiaire financé", "Employeur": "Employeur / financeur" };
+  var P = new URLSearchParams(location.search);
+  var choix = document.getElementById("choix"), zone = document.getElementById("zone-q");
+  var form = document.getElementById("form-q"), corps = document.getElementById("corps-q");
+  var merci = document.getElementById("merci-q"), err = document.getElementById("erreur-q");
+  var courant = null, debut = Date.now(), code = P.get("code") || "";
+
+  function el(tag, attrs, txt) { var e = document.createElement(tag); for (var k in (attrs || {})) e.setAttribute(k, attrs[k]); if (txt != null) e.textContent = txt; return e; }
+  function trouver(cle) { for (var i = 0; i < Q.length; i++) if (Q[i].cle === cle) return Q[i]; return null; }
+  function aujourdhui() { var d = new Date(); return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
+  function versIso(v) { var m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(v || ""); return m ? m[3] + "-" + ("0" + m[2]).slice(-2) + "-" + ("0" + m[1]).slice(-2) : (v || ""); }
+
+  // Cartes de choix
+  Q.forEach(function (q) {
+    var b = el("button", { type: "button", "class": "carte-q" });
+    b.appendChild(el("span", { "class": "badge-q" + (q.moment === "froid" ? " froid" : "") }, q.moment === "chaud" ? "À chaud" : "À froid"));
+    b.appendChild(el("strong", null, PUBLIC[q.public] || q.public));
+    b.appendChild(el("span", { "class": "txt" }, q.carte));
+    b.appendChild(el("span", { "class": "go" }, "Remplir ce questionnaire →"));
+    b.addEventListener("click", function () { ouvrir(q.cle, true); });
+    document.getElementById("liste-" + q.moment).appendChild(b);
+  });
+
+  function champ(q) {
+    var id = "q_" + q.id, box;
+    if (q.type === "section") return el("h3", { "class": "section-q" }, q.titre);
+    if (q.type === "info") return el("p", { "class": "info-q" }, q.titre);
+    if (q.type === "choix" || q.type === "echelle") {
+      box = el("div", { "class": "q groupe", role: "radiogroup", "aria-labelledby": id + "_t" });
+      var t = el("span", { "class": "titre-q", id: id + "_t" }, q.titre);
+      if (q.req) t.appendChild(el("span", { "class": "req" }, " *"));
+      box.appendChild(t);
+      var long = q.type === "choix" && q.options.some(function (o) { return o.length > 34; });
+      var wrap = el("div", { "class": q.type === "echelle" ? "echelle" : "choix" + (long ? " liste" : "") });
+      q.options.forEach(function (o) {
+        var lab = el("label"), inp = el("input", { type: "radio", name: q.id, value: q.type === "echelle" ? o.charAt(0) : o });
+        var s = el("span");
+        if (q.type === "echelle") { s.appendChild(el("b", null, o.charAt(0))); s.appendChild(document.createTextNode(o.replace(/^\d\s*:\s*/, ""))); }
+        else s.textContent = o;
+        lab.appendChild(inp); lab.appendChild(s); wrap.appendChild(lab);
+      });
+      box.appendChild(wrap);
+    } else if (q.type === "engagement") {
+      box = el("div", { "class": "q engagement-q" });
+      box.appendChild(el("span", { "class": "titre-q" }, q.titre));
+      if (q.texte) box.appendChild(el("blockquote", null, q.texte));
+      var l = el("label", { "class": "engagement" }), c = el("input", { type: "checkbox", name: q.id, value: q.label });
+      l.appendChild(c); l.appendChild(el("span", null, q.label + (q.req ? " *" : ""))); box.appendChild(l);
+    } else {
+      box = el("label", { "class": "q" });
+      box.appendChild(document.createTextNode(q.titre));
+      if (q.req) box.appendChild(el("span", { "class": "req" }, " *"));
+      var inp;
+      if (q.type === "paragraphe") inp = el("textarea", { name: q.id, rows: "3" });
+      else inp = el("input", { name: q.id, type: q.type === "date" ? "date" : (q.type === "nombre" ? "number" : "text") });
+      if (q.type === "nombre") { inp.setAttribute("min", "0"); inp.setAttribute("step", "0.5"); inp.setAttribute("inputmode", "decimal"); }
+      if (q.type === "texte" && /^Nom/.test(q.titre)) inp.setAttribute("autocomplete", "name");
+      var v = q.prefill ? P.get(q.prefill) : null;
+      if (v) inp.value = q.type === "date" ? versIso(v) : v;
+      else if (q.defaut === "aujourdhui") inp.value = aujourdhui();
+      else if (q.defaut) inp.value = q.defaut;
+      box.appendChild(inp);
+    }
+    box.setAttribute("data-q", q.id);
+    if (q.req) box.setAttribute("data-req", "1");
+    if (q.si) box.setAttribute("data-si", JSON.stringify(q.si));
+    return box;
+  }
+
+  function valeur(nom) { var c = form.querySelector('[name="' + nom + '"]:checked'); return c ? c.value : ""; }
+  function visible(b) { var si = b.getAttribute("data-si"); if (!si) return true; si = JSON.parse(si); return si.valeurs.indexOf(valeur(si.q)) >= 0; }
+  function maj() {
+    corps.querySelectorAll("[data-q]").forEach(function (b) {
+      var v = visible(b); b.hidden = !v; b.style.display = v ? "" : "none";
+      var req = v && b.getAttribute("data-req") === "1";
+      b.querySelectorAll("input,textarea").forEach(function (i) { i.required = req; });
+    });
+  }
+
+  function ouvrir(cle, defiler) {
+    var q = trouver(cle); if (!q) return;
+    courant = q; corps.innerHTML = ""; err.textContent = "";
+    document.getElementById("badge-q").textContent = (q.moment === "chaud" ? "À chaud" : "À froid") + " · " + (PUBLIC[q.public] || q.public);
+    document.getElementById("titre-q").textContent = q.titre;
+    document.getElementById("sous-titre-q").textContent = q.entete;
+    // Informations sur la formation regroupées dans un encart
+    var infos = null, zoneInfos = true;
+    q.questions.forEach(function (it) {
+      if (it.type === "section" || it.type === "info" || it.type === "choix" || it.type === "echelle") zoneInfos = false;
+      var c = champ(it);
+      if (zoneInfos && (it.type === "texte" || it.type === "date" || it.type === "nombre")) {
+        if (!infos) { infos = el("div", { "class": "infos-q" }); corps.appendChild(infos); }
+        infos.appendChild(c);
+      } else corps.appendChild(c);
+    });
+    maj(); form.hidden = false; merci.hidden = true; choix.hidden = true; zone.hidden = false; debut = Date.now();
+    var b = form.querySelector('button[type="submit"]'); b.disabled = false; b.textContent = "Envoyer mes réponses";
+    if (history.replaceState) { P.set("q", cle); history.replaceState(null, "", "?" + P.toString()); }
+    if (defiler) zone.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function fermer() {
+    zone.hidden = true; choix.hidden = false; courant = null;
+    if (history.replaceState) { P.delete("q"); var s = P.toString(); history.replaceState(null, "", s ? "?" + s : location.pathname); }
+    choix.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  document.getElementById("retour-q").addEventListener("click", fermer);
+  document.getElementById("autre-q").addEventListener("click", function () {
+    // Tablette en fin de session : on repart sur le même questionnaire, vierge (le code personnel n'est pas réutilisé).
+    code = ""; P.delete("code"); ouvrir(courant.cle, true);
+  });
+  form.addEventListener("change", maj);
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); err.textContent = "";
+    var manque = null;
+    corps.querySelectorAll('[data-req="1"]').forEach(function (b) {
+      if (manque || b.hidden) return;
+      var i = b.querySelector("input,textarea"), ok;
+      if (i.type === "radio" || i.type === "checkbox") ok = !!b.querySelector("input:checked"); else ok = i.value.trim() !== "";
+      if (!ok) manque = b;
+    });
+    if (manque) {
+      err.textContent = "Merci de répondre aux questions obligatoires (*).";
+      manque.scrollIntoView({ block: "center", behavior: "smooth" });
+      var f = manque.querySelector("input,textarea"); if (f) f.focus({ preventScroll: true });
+      return;
+    }
+    var cfg = CHAMPS[courant.cle];
+    if (form.site_web.value || Date.now() - debut < 4000) { form.hidden = true; merci.hidden = false; return; }
+    if (!cfg || !cfg.envoi) { err.textContent = "Ce questionnaire n'est pas encore relié. Merci de prévenir HominiSens Formations (06 74 25 25 54)."; return; }
+    var data = new URLSearchParams();
+    if (code && cfg.e.code) data.append(cfg.e.code, code);
+    corps.querySelectorAll("[data-q]").forEach(function (b) {
+      if (b.hidden) return;
+      var id = cfg.e[b.getAttribute("data-q")]; if (!id) return;
+      b.querySelectorAll("input,textarea").forEach(function (i) {
+        if ((i.type === "radio" || i.type === "checkbox") && !i.checked) return;
+        var v = i.value.trim(); if (!v) return;
+        if (i.type === "date") { var d = v.split("-"); data.append(id + "_year", d[0]); data.append(id + "_month", String(+d[1])); data.append(id + "_day", String(+d[2])); }
+        else data.append(id, v);
+      });
+    });
+    var bouton = form.querySelector('button[type="submit"]'); bouton.disabled = true; bouton.textContent = "Envoi en cours…";
+    fetch(cfg.envoi, { method: "POST", mode: "no-cors", body: data })
+      .then(function () { form.hidden = true; merci.hidden = false; merci.scrollIntoView({ block: "center", behavior: "smooth" }); })
+      .catch(function () { bouton.disabled = false; bouton.textContent = "Envoyer mes réponses"; err.textContent = "L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez."; });
+  });
+
+  if (P.get("q") && trouver(P.get("q"))) ouvrir(P.get("q"), false);
+})();
+</script>
+</body>
+</html>
