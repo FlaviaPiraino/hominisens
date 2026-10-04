@@ -693,3 +693,7 @@ footer .petit { color: var(--encre-douce); }
   color: var(--encre-douce);
 }
 .etat-vide-articles h3 { color: var(--or-fonce); margin-bottom: .6rem; }
+
+/* Boutons « contour » dans les bandeaux : fond clair pour rester lisibles sur les feuillages */
+.hero .bouton.contour { background: rgba(251, 249, 246, .92); }
+.hero .bouton.contour:hover { background: var(--sauge); color: var(--blanc); }
