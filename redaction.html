@@ -533,7 +533,7 @@ function enteteAuth() {
 }
 
 async function lireFichier(chemin) {
-  const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${chemin}`, { headers: enteteAuth() });
+  const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${chemin}`, { headers: enteteAuth(), cache: "no-store" });
   if (res.status === 404) return null;
   if (!res.ok) throw new Error("Erreur GitHub (" + res.status + ") en lisant " + chemin);
   const data = await res.json();
@@ -541,18 +541,25 @@ async function lireFichier(chemin) {
 }
 
 async function ecrireFichier(chemin, contenuBase64, message, sha) {
+  // Fichier déjà présent (reprise d'une publication interrompue) : on le remplace
+  if (!sha) {
+    const existant = await lireFichier(chemin);
+    if (existant) sha = existant.sha;
+  }
   const corps = { message: message, content: contenuBase64 };
   if (sha) corps.sha = sha;
-  const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${chemin}`, {
-    method: "PUT",
-    headers: Object.assign({ "Content-Type": "application/json" }, enteteAuth()),
-    body: JSON.stringify(corps)
-  });
-  if (!res.ok) {
+  // GitHub refuse parfois (409) deux enregistrements trop rapprochés : on patiente et on réessaie
+  for (let essai = 1; ; essai++) {
+    const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${chemin}`, {
+      method: "PUT",
+      headers: Object.assign({ "Content-Type": "application/json" }, enteteAuth()),
+      body: JSON.stringify(corps)
+    });
+    if (res.ok) return res.json();
+    if (res.status === 409 && essai < 4) { await new Promise((r) => setTimeout(r, 1500 * essai)); continue; }
     const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || ("Erreur GitHub (" + res.status + ") en écrivant " + chemin));
+    throw new Error((err.message || ("Erreur GitHub (" + res.status + ")")) + " — en écrivant " + chemin);
   }
-  return res.json();
 }
 
 /* ---------- Gabarit HTML d'un article ---------- */
@@ -694,6 +701,7 @@ async function ajouterALaListe(a) {
   const doc = new DOMParser().parseFromString(fichier.contenu, "text/html");
   const conteneur = doc.getElementById("liste-articles");
   if (!conteneur) throw new Error("La page de liste ne contient pas l'élément #liste-articles attendu.");
+  if (conteneur.querySelector('a[href="articles/' + a.slug + '.html"]')) return;
   const etatVide = doc.getElementById("etat-vide");
   if (etatVide) etatVide.remove();
 
@@ -781,8 +789,10 @@ $("#btn-publier").addEventListener("click", async () => {
     afficherStatut("Vérification de l'adresse...", "info");
 
     const cheminArticle = "articles/" + slug + ".html";
-    const existant = await lireFichier(cheminArticle);
-    if (existant) throw new Error("Un article existe déjà à cette adresse (" + slug + "). Modifiez l'adresse (URL) puis réessayez.");
+    // Bloque seulement un article déjà publié en entier (présent dans la liste) ;
+    // une publication interrompue peut être relancée telle quelle.
+    const liste = await lireFichier("univers-massage-bien-etre.html");
+    if (liste && liste.contenu.indexOf('href="articles/' + slug + '.html"') !== -1) throw new Error("Un article existe déjà à cette adresse (" + slug + "). Modifiez l'adresse (URL) puis réessayez.");
 
     afficherStatut("Envoi de la photo...", "info");
     await ecrireFichier("images/articles/" + slug + ".jpg", photoPrincipale.base64, "Article : photo pour " + slug);
