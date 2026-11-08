@@ -1,0 +1,34 @@
+SITE HOMINISENS – modifications du 8 novembre 2026 (demandes de Flavia)
+
+COMMENT METTRE EN LIGNE (5 min)
+1. Ouvrir https://github.com/FlaviaPiraino/hominisens (connectée au compte de Flavia).
+2. « Add file » › « Upload files ».
+3. Glisser TOUT le contenu de ce dossier (fichiers .html + dossiers « documents » et « articles »), sauf ce LISEZ-MOI.
+4. En bas : message « Mises à jour Qualiopi V10 – nov. 2026 » › « Commit changes ».
+5. Attendre 1 à 2 minutes, puis vérifier https://www.hominisens.com/formations.html
+IMPORTANT : à faire avant de publier un nouvel article avec l'outil de rédaction (sinon me redemander les fichiers).
+
+CE QUI CHANGE
+Page Formations (formations.html)
+- Titre : « 12 formations ouvertes aux débutants comme aux confirmés, dans un cadre bienveillant et intimiste ».
+- En chiffres : + « 100 % de taux de satisfaction » et sa méthode (15 questionnaires à chaud en 2026).
+- Ce que vous saurez faire : phrase sur les compétences propres à chaque programme, bloc ISSUE DE FORMATION,
+  mention « ni qualifiante ni certifiante, pas inscrite au RNCP ni au RS ».
+- Pour qui : suppression de « avec des financements adaptés à votre statut ».
+- Financement : « financeur externe » ; titre « Financez votre formation : des solutions existent ».
+- Organisation : phrase sur le lieu non PMR et la délocalisation du module.
+- Nouveau bloc DOCUMENTS QUALITÉ juste après (CGV, réclamation, signalement, organigramme, handicap, certificat).
+- FAQ : prérequis, délai de rétractation, issue de formation (sans « qualifiant »), handicap (+ lien PDF).
+Page Prise en charge (prise-en-charge.html)
+- Paragraphe : Flavia n'est ni juge ni décisionnaire, ne fait pas la démarche à la place du stagiaire.
+- Étape 2 : « Je vous fournis les documents ». Bloc vert : « Commencez votre démarche de prise en charge ».
+Page Techniques & tarifs : « 19 questionnaires à chaud recensés depuis 2021 » dans l'encart de calcul.
+Accueil (index.html) : « formations ouvertes aux débutants comme aux confirmés » ; FAQ financement nuancée.
+Toutes les pages : pied de page « formations en massage bien-être » au lieu de « formations qualifiantes ».
+
+DOCUMENTS PDF (dossier documents)
+- Mis à jour : cgv-formations.pdf (03/11), plaquette-offre-formation.pdf (03/11), fiche-reclamation.pdf (02/11).
+- Nouveau : fiche-signalement-situations-inappropriees.pdf (02/11).
+- Déjà à jour (identiques aux dossiers du Mac) : 11 programmes, certificat Qualiopi, organigramme, accessibilité handicap.
+- Gardés tels quels (pas de version plus récente trouvée sur le Mac) : calendriers 2026 et 2027, mentions légales,
+  CGV prestations, programme Vodder.
