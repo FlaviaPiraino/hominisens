@@ -80,12 +80,13 @@
 
   <section id="formulaire" class="centre">
     <h2>Écrivez-moi</h2>
-    <form class="formulaire" action="https://formsubmit.co/flaviapiraino@gmail.com" method="POST">
+    <form class="formulaire" action="merci.html" data-envoi="https://formsubmit.co/flaviapiraino@gmail.com" method="POST">
       <input type="hidden" name="_subject" value="Nouveau message via Hominisens.com">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://www.hominisens.com/merci.html">
-      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="text" name="_honey" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="_blacklist" value="http://, https://, onpartage, probox, .my.id, bitcoin, crypto, casino, viagra, backlink">
 
       <div class="form-ligne">
         <label>Prénom
@@ -186,6 +187,26 @@
     var o = n.classList.toggle("ouvert");
     b.setAttribute("aria-expanded", o ? "true" : "false");
     b.setAttribute("aria-label", o ? "Fermer le menu" : "Ouvrir le menu");
+  });
+})();
+</script>
+<script>
+/* Anti-spam discret : l'adresse d'envoi n'est ajoutée qu'après une vraie interaction humaine,
+   et un envoi en moins de 4 secondes est bloqué (les robots remplissent tout instantanément). */
+(function(){
+  document.querySelectorAll('form[data-envoi]').forEach(function(f){
+    var t0=Date.now(), humain=false;
+    var activer=function(){ if(!humain){ humain=true; f.setAttribute('action', f.getAttribute('data-envoi')); } };
+    ['pointerdown','keydown','focusin','touchstart'].forEach(function(ev){ f.addEventListener(ev, activer, {once:true, passive:true}); });
+    f.addEventListener('submit', function(e){
+      var trop=Date.now()-t0<4000, piege=f.querySelector('[name="_honey"]');
+      if(!humain || trop || (piege && piege.value)){
+        e.preventDefault();
+        var m=f.querySelector('.anti-spam-msg');
+        if(!m){ m=document.createElement('p'); m.className='petit centre anti-spam-msg'; f.appendChild(m); }
+        m.textContent='Un instant… merci de vérifier votre message puis de cliquer à nouveau sur « Envoyer ».';
+      }
+    });
   });
 })();
 </script>
