@@ -697,3 +697,7 @@ footer .petit { color: var(--encre-douce); }
 /* Boutons « contour » dans les bandeaux : fond clair pour rester lisibles sur les feuillages */
 .hero .bouton.contour { background: rgba(251, 249, 246, .92); }
 .hero .bouton.contour:hover { background: var(--sauge); color: var(--blanc); }
+
+/* ---------- Médiation de la consommation (pied de page) ---------- */
+.footer-bas .mediation { font-size: .72rem; line-height: 1.5; max-width: 900px; margin: 0 auto .8rem; opacity: .9; }
+.footer-bas .mediation a { text-decoration: underline; }

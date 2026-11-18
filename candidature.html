@@ -114,17 +114,24 @@
         <label>Formation souhaitée <span class="req">*</span>
           <select name="Formation souhaitée" required>
             <option value="">Choisissez une formation…</option>
-            <option>Massage bien-être Detox [DETOX]</option>
-            <option>Massage bien-être Hawaïen [HAWAIEN]</option>
-            <option>Massage bien-être Sportif [SPORTIF]</option>
-            <option>Massage bien-être Thaï Stretch [THAI]</option>
-            <option>Massage bien-être Visage anti-âge [VISAGE]</option>
-            <option>Massage bien-être Prénatal [PRENATAL]</option>
-            <option>Massage bien-être Ventre holistique [VENTRE]</option>
-            <option>Massage bien-être Étoile [ETOILE]</option>
-            <option>Massage bien-être Relaxant corps [RELAX_CORPS]</option>
-            <option>Massage bien-être Relaxant buste [RELAX_BUSTE]</option>
+            <option value="Massage bien-être Detox [DETOX]">Massage bien-être Detox</option>
+            <option value="Massage bien-être Hawaïen [HAWAIEN]">Massage bien-être Hawaïen</option>
+            <option value="Massage bien-être Sportif [SPORTIF]">Massage bien-être Sportif – niveau 1</option>
+            <option value="Massage bien-être Sportif niveau 2 [SPORTIF_2]">Massage bien-être Sportif – niveau 2</option>
+            <option value="Massage bien-être Thaï Stretch [THAI]">Massage bien-être Thaï Stretch</option>
+            <option value="Massage bien-être Visage anti-âge [VISAGE]">Massage bien-être Visage anti-âge</option>
+            <option value="Massage bien-être Module bonus visage (accessoires &amp; intrabuccal) [VISAGE_BONUS]">Module bonus visage : accessoires &amp; intrabuccal</option>
+            <option value="Massage bien-être Prénatal [PRENATAL]">Massage bien-être Prénatal</option>
+            <option value="Massage bien-être Ventre holistique [VENTRE]">Massage bien-être Ventre holistique</option>
+            <option value="Massage bien-être Étoile [ETOILE]">Massage bien-être Étoile</option>
+            <option value="Massage bien-être Relaxant corps [RELAX_CORPS]">Massage bien-être Relaxant corps</option>
+            <option value="Massage bien-être Relaxant buste [RELAX_BUSTE]">Massage bien-être Relaxant buste</option>
+            <option value="MasterClass sur demande [MASTERCLASS]">MasterClass sur demande</option>
           </select>
+        </label>
+        <label class="cache" id="bloc-masterclass">Quelle MasterClass souhaitez-vous ? <span class="req">*</span>
+          <span class="aide">Thème, technique, durée souhaitée, nombre de personnes… Je vous recontacte pour construire la MasterClass avec vous.</span>
+          <textarea name="MasterClass souhaitée" rows="3"></textarea>
         </label>
         <label>Session souhaitée <span class="aide">Dates, si vous les connaissez (voir les calendriers <a href="documents/calendrier-2026-formations.pdf" target="_blank">2026</a> et <a href="documents/calendrier-2027-formations.pdf" target="_blank">2027</a>).</span>
           <input type="text" name="Session souhaitée (dates, si connues)">
@@ -309,7 +316,8 @@
     </div>
   </div>
   <div class="footer-bas">
-    Tous droits réservés HominiSens — PIRAINO Flavia | Mise à jour du site 10/2026. · <a href="redaction.html" rel="nofollow">Admin</a>
+    <p class="mediation">Médiation de la consommation (art. L.616-1 et R.616-1 du code de la consommation) : l’entité de médiation retenue est la SAS MÉDIATION CONSOMMATION DÉVELOPPEMENT. En cas de litige, tout consommateur peut déposer sa réclamation sur <a href="https://www.medconsodev.eu" rel="noopener" target="_blank">www.medconsodev.eu</a> ou par courrier : MÉDIATION CONSOMMATION DÉVELOPPEMENT – Immeuble L’Horizon – Esplanade de France – 3 rue J. Constant Milleret – 42000 Saint-Étienne.</p>
+    Tous droits réservés HominiSens — PIRAINO Flavia | Mise à jour du site 11/2026. · <a href="redaction.html" rel="nofollow">Admin</a>
   </div>
 </footer>
 
@@ -338,14 +346,21 @@
   if (!form) return;
   var merci = document.getElementById("dossier-merci"), err = document.getElementById("dossier-erreur");
   var bloc = document.getElementById("bloc-lesquelles"), debut = Date.now();
+  var blocMc = document.getElementById("bloc-masterclass"), champMc = blocMc.querySelector("textarea");
+  function majMasterclass() {
+    var mc = form.querySelector('select[name="Formation souhaitée"]').value.indexOf("[MASTERCLASS]") >= 0;
+    blocMc.classList.toggle("cache", !mc); champMc.required = mc;
+  }
   // Formation pré-sélectionnée depuis le catalogue : candidature.html?formation=CODE
   var code = (new URLSearchParams(location.search).get("formation") || "").toUpperCase();
   if (code) {
     var sel = form.querySelector('select[name="Formation souhaitée"]');
-    for (var i = 0; i < sel.options.length; i++) if (sel.options[i].text.slice(-(code.length + 2)) === "[" + code + "]") sel.selectedIndex = i;
+    for (var i = 0; i < sel.options.length; i++) if (sel.options[i].value.slice(-(code.length + 2)) === "[" + code + "]") sel.selectedIndex = i;
   }
+  majMasterclass();
   form.addEventListener("change", function (e) {
     if (e.target.name === "Avez-vous déjà suivi une formation en massage ?") bloc.classList.toggle("cache", e.target.value !== "Oui");
+    if (e.target.name === "Formation souhaitée") majMasterclass();
   });
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -359,6 +374,9 @@
     var fd = new FormData(form);
     // Anti-robots : champ piège rempli ou envoi en moins de 4 secondes = on ignore silencieusement.
     if (fd.get("site_web") || Date.now() - debut < 4000) { form.hidden = true; merci.hidden = false; return; }
+    var mcTexte = (fd.get("MasterClass souhaitée") || "").trim(), but = "Dans quel but souhaitez-vous suivre cette formation ?";
+    if (mcTexte && String(fd.get("Formation souhaitée")).indexOf("[MASTERCLASS]") >= 0) fd.set(but, "MasterClass souhaitée : " + mcTexte + "\n\n" + (fd.get(but) || ""));
+    fd.delete("MasterClass souhaitée");
     var data = new URLSearchParams();
     fd.forEach(function (valeur, nom) {
       var id = CHAMPS[nom];

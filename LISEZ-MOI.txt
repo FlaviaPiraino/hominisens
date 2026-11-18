@@ -1,0 +1,13 @@
+MISE À JOUR DU SITE – 18/11/2026
+
+ORDRE IMPORTANT : installe d'abord Vigie v1.15.10 et lance la routine (elle met à jour la liste des formations du formulaire Google). Ensuite seulement, mets ces fichiers sur GitHub.
+
+1. Sur github.com/FlaviaPiraino/hominisens : Add file > Upload files.
+2. Glisse TOUT le contenu de ce dossier (les fichiers .html, et les dossiers « articles », « css », « documents ») – pas ce LISEZ-MOI.
+3. Commit changes.
+
+Ce qui change :
+- Candidature : Sportif niveau 1, Sportif niveau 2, Module bonus visage (accessoires & intrabuccal), MasterClass sur demande (+ champ « Quelle MasterClass souhaitez-vous ? » qui apparaît seulement si elle est choisie).
+- Catalogue : les boutons « Candidater » du Sportif niveau 2 et du Module bonus visage pré-sélectionnent la bonne formation.
+- Médiateur de la consommation : nouvelle mention (MÉDIATION CONSOMMATION DÉVELOPPEMENT) en bas de toutes les pages, dans les 2 CGV et dans les mentions légales. Plus aucune trace de CNPM.
+- Mentions légales : hébergeur du site renseigné (GitHub Pages).
