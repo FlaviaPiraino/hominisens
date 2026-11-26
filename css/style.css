@@ -208,6 +208,8 @@ h3 {
   transition: transform .18s;
 }
 .carte:hover { transform: translateY(-4px); }
+/* Carte qui occupe deux colonnes dès que la grille en a au moins deux (sinon elle créerait une colonne fantôme) */
+@media (min-width: 620px) { .carte-large { grid-column: span 2; } }
 .carte img { border-radius: calc(var(--rayon) - 4px); margin: 0 auto 1.1rem; }
 .carte ul { list-style: none; margin: .8rem 0; }
 .carte li { padding: .3rem 0; border-bottom: 1px dashed #ece2d4; }
